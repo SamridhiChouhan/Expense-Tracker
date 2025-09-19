@@ -1,0 +1,28 @@
+.navbar{
+     background: linear-gradient(90deg, #667eea, #764ba2);
+     height: 10vh;
+     color: white;
+     padding: 1rem;
+     display: flex;
+     flex-direction: column;
+     justify-content: space-between;
+     position: fixed;
+     top: 0;
+     width: 100vw;
+}
+.nav-brand{
+    font-size: larger;
+    padding: 0rem 1rem;
+}
+
+.nav-month {
+    /* width: ; */
+    display: flex;
+}
+
+.nav-month a{
+    color: #ccc;
+    text-decoration: none;
+    font-size: medium;
+    padding: 0rem 1rem;
+}

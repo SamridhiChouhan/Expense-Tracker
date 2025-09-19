@@ -1,0 +1,14 @@
+body{
+    margin: 0 !important;
+    padding: 0;
+}
+
+#myChart{
+    /* margin-top: 20vh;
+    height: 7rem !important; */
+    width: 30% !important;
+}
+
+.content{
+    margin-top: 15vh;
+}

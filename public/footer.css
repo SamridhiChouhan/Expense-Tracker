@@ -1,0 +1,40 @@
+.footer{
+    /* width: 100vw; */
+    padding: 0.5rem 1rem;
+    color: white;
+    background-color: rgb(170, 157, 138);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+.f-panel{
+    display: flex;
+    font-size: medium;
+}
+
+.f-option{
+    padding: 0 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.profile{
+    display: flex;
+    align-items: end;
+    margin-right: 2rem;
+    height: 100%;
+
+}
+
+.p-photo{
+    height: 2rem;
+    width: 2rem;
+    background-color: rgb(91, 91, 226);
+    border-radius: 50%;
+    margin: 0 1rem;
+}

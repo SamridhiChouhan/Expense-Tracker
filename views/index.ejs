@@ -1,0 +1,28 @@
+<% layout("./layouts/boilerplate") %>
+<script src="script.js" ></script>
+
+<div class="cashBook" style="display: flex;">
+<div class="expense" style="margin-right: 10rem;">
+    <h3>Total expense : <%- totalExpense %></h3>
+
+    <a href="/upgrade">Upgrade</a>
+    <br><br>
+    <% for(expense of allExpense){ %>
+    <div  class="total"><%-expense.expense_title %> <%- expense.amount%></div>
+    <% } %>
+</div>
+
+<div class="income">
+    <h3>Total income : <%- totalIncome %></h3>
+
+    <a href="/addIncome">Add-Income</a>
+    <br><br>
+    <% for(income of allIncomes){ %>
+    <div  class="total"><%-income.income_source %> <%- income.amount%></div>
+    <% } %>
+</div>
+</div>
+
+<div class="diff">
+    <h3>Difference : <%- totalIncome - totalExpense %></h3>
+</div>

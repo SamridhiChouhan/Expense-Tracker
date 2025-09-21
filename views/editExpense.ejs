@@ -1,0 +1,17 @@
+<% layout("./layouts/boilerplate") %>
+
+
+<h2>Edit</h2>
+
+<form action="/editExpense/<%= expense.id %>?_method=PATCH" method="post">
+    <input type="text" name="expense_title"  value="<%- expense.expense_title %>"><br><br>
+    <input type="number" name="amount" value=<%- expense.amount %>><br><br>
+    <select name="category" >
+           <option value="Electricity" <%= expense.category === "Electricity"  ? "selected" : "" %>>Electricity</option>
+           <option value="Rent"<%= expense.category === "Rent" ? "selected" : "" %>>Rent</option>
+           <option value="Grocery" <%= expense.category === "Grocery" ? "selected" : "" %>>Grocery</option>
+           <option value="Travel" <%= expense.category === "Travel" ? "selected" : "" %>>Travel</option>
+           <option value="Other" <%= expense.category === "Other" ? "selected" : "" %>>Other</option>
+    </select><br>
+    <button>Edit</button>
+</form>

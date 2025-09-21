@@ -1,0 +1,58 @@
+.graph-section{
+    width: 38%;
+    background-color: pink;
+    height: auto;
+}
+
+.graph-box{
+    margin: 1rem;
+    height: 18rem;
+    background-color: azure;
+    border-radius: 1rem;
+}
+
+.exp-contain{
+    height: 5rem;
+    margin: 1rem;
+    background-color: azure;
+    display: flex;
+    padding: 0 0.5rem;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.exp-info{
+    display: flex;
+    align-items: center;
+}
+
+.icon{
+    height: 4.5rem;
+    width: 4.5rem;
+    /* background-color: aqua; */
+    opacity: 0.5;
+    border-radius: 40%;
+}
+
+.exp-head{
+    padding-left: 1rem;
+}
+
+.exp-title{
+    font-weight: 600;
+    font-size: medium;
+    margin-bottom: 0.2rem;
+}
+
+.exp-amount{
+    text-align: end;
+}
+.exp-amount p{
+    /* margin-right: 0; */
+    font-size: larger;
+    margin: 0;
+}
+
+.exp-amount a{
+    font-size: small;
+}

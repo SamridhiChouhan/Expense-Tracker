@@ -7,7 +7,7 @@ const methodOverride = require("method-override");
 const ejsMate = require("ejs-mate");
 const mongoose = require('mongoose');
 const Expense = require ("./models/expense");
-const Income = require ("./models/income")
+const Income = require ("./models/income");
 
 
 app.use(express.urlencoded({extended : true}));
@@ -47,18 +47,16 @@ app.get("/" , async(req,res)=>{
        totalIncome = totalIncome + income.amount ;  
     }
     
-    console.log(`sum of all expenses : ${totalExpense}`);
-    console.log(`Total income : ${totalIncome}`)
     res.render("index" , {allExpense, totalExpense , allIncomes , totalIncome});
 
     
 })
 
-app.get("/upgrade" , async(req,res)=>{
-    res.render("upgrade");
+app.get("/addExpense" , async(req,res)=>{
+    res.render("addExpense");
 })
 
-app.post("/upgrade" ,async(req,res)=>{
+app.post("/addExpense" ,async(req,res)=>{
     let {expense_title, amount , category} = req.body ;
     let id = uuidv4();
     let created_at = new Date();
@@ -91,6 +89,67 @@ app.post("/addIncome" ,async(req,res)=>{
     res.redirect('/');
 
 })
+
+app.get("/editExpense/:id" , async (req,res)=>{
+    let {id} = req.params;
+    let expense = await Expense.findOne({id});
+    // console.log(expense)
+    res.render("editExpense" , {expense});
+})
+
+app.patch("/editExpense/:id" , async (req,res)=>{
+    let {id} = req.params ; 
+    let {expense_title , amount , category} = req.body ; 
+    let expense = await Expense.findOneAndUpdate({id}, {
+        expense_title ,
+        amount ,
+        category ,
+    });
+    if(!expense){
+        return res.status(404).send("expense not found");
+    }
+    console.log(req.body);
+    console.log(expense);
+    res.redirect("/");
+})
+
+app.get("/editIncome/:id" , async (req,res)=>{
+    let {id} = req.params;
+    let income = await Income.findOne({id});
+    console.log(income)
+    res.render("editIncome" , {income});
+})
+
+app.patch("/editIncome/:id" , async (req,res)=>{
+    let {id} = req.params ; 
+    let {income_source , amount , category} = req.body ; 
+    let income = await Income.findOneAndUpdate({id}, {
+        income_source ,
+        amount ,
+        category ,
+    });
+    if(!income){
+        return res.status(404).send("income not found");
+    }
+    console.log(req.body);
+    console.log(income);
+    res.redirect("/");
+})
+
+app.delete("/deleteExpense/:id" , async(req,res)=>{
+    let {id} = req.params ;
+    let expense = await Expense.findOneAndDelete({id});
+    console.log(expense)
+    res.redirect("/");
+})
+
+app.delete("/deleteIncome/:id" , async(req,res)=>{
+    let {id} = req.params ;
+    let income = await Income.findOneAndDelete({id});
+    console.log(income);
+    res.redirect("/");
+})
+
 
 app.listen(port , ()=>{
     console.log(`Server is listening on ${port}`);

@@ -1,14 +1,62 @@
 <% layout("./layouts/boilerplate") %>
 <script src="script.js" ></script>
 
-<div class="cashBook" style="display: flex;">
+<div class="landing-page">
+    <div class="graph-section">
+        <div class="graph-box">
+         
+        </div>
+        <div class="expense-history">
+
+            <% for(expense of allExpense){ %>
+             <div class="exp-contain">
+                  <div class="exp-info">
+
+                    <% if(expense.category === "Electricity"){%>
+                            <div class="icon" style="background-color:#f1c40f;"></div>
+                    <% } else if(expense.category === "Rent"){ %>
+                            <div class="icon" style="background-color:#3498db ;"></div>
+                    <%  } else if(expense.category === "Grocery"){ %>
+                            <div class="icon" style="background-color: #2ecc71 ;"></div>
+                    <% } else if(expense.category === "Travel"){ %>
+                            <div class="icon" style="background-color: #e67e22 ;"></div>
+                    <% } else { %>
+                            <div class="icon" style="background-color: #95a5a6;"></div>
+                    <% } %>
+
+                      <div class="exp-head">
+                        <div class="exp-title"><%= expense.expense_title %></div>
+                        <div class="exp-category"><%= expense.category %></div>
+                      </div>
+                    </div>
+                  <div class="exp-amount">
+                       <p>&#8377;<%= expense.amount %></p>
+                       <a href="/editExpense/<%=expense.id %>"><i class="fa-regular fa-pen-to-square"></i></a>
+                    </div>
+             </div>
+             <% } %>
+
+        </div>
+    </div>
+
+    <div class="home-section">
+
+    </div>
+</div>
+
+<!-- <div class="cashBook" style="display: flex;">
 <div class="expense" style="margin-right: 10rem;">
     <h3>Total expense : <%- totalExpense %></h3>
 
-    <a href="/upgrade">Upgrade</a>
+    <a href="/addExpense">Upgrade</a>
     <br><br>
     <% for(expense of allExpense){ %>
     <div  class="total"><%-expense.expense_title %> <%- expense.amount%></div>
+    <a href="/editExpense/<%=expense.id %>">Edit</a>
+    <form action="/deleteExpense/<%= expense.id%>?_method=DELETE" method="post">
+        <button>Delete</button>
+    </form>
+    <br><br>
     <% } %>
 </div>
 
@@ -19,10 +67,15 @@
     <br><br>
     <% for(income of allIncomes){ %>
     <div  class="total"><%-income.income_source %> <%- income.amount%></div>
+    <a href="/editIncome/<%=income.id %>">Edit</a>
+    <form action="/deleteIncome/<%= income.id%>?_method=DELETE" method="post">
+        <button>Delete</button>
+    </form>
+    <br><br>
     <% } %>
 </div>
 </div>
 
 <div class="diff">
     <h3>Difference : <%- totalIncome - totalExpense %></h3>
-</div>
+</div> -->

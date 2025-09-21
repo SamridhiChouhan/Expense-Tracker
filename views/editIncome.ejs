@@ -1,0 +1,22 @@
+<% layout("./layouts/boilerplate") %>
+
+
+<h2>Edit</h2>
+
+<form action="/editIncome/<%= income.id %>?_method=PATCH" method="post">
+    <input type="text" name="income_source"  value="<%- income.income_source %>"><br><br>
+    <input type="number" name="amount" value=<%- income.amount %>><br><br>
+    <select name="category">
+           <option value="Salary" <%= income.category === "Salary"  ? "selected" : "" %>>Salary</option>
+           <option value="Freelance"<%= income.category === "Freelance" ? "selected" : "" %>>Freelance</option>
+           <option value="Gift" <%= income.category === "Gift" ? "selected" : "" %>>Gift</option>
+           <option value="Investment" <%= income.category === "Investment" ? "selected" : "" %>>Investment</option>
+           <option value="Side Hustle" <%= income.category === "Side Hustle" ? "selected" : "" %>>Side Hustle</option>
+           <option value="Sale" <%= income.category === "Sale" ? "selected" : "" %>>Sale</option>
+           <option value="Interest" <%= income.category === "Interest" ? "selected" : "" %>>Interest</option>
+           <option value="Online Income" <%= income.category === "Online Income" ? "selected" : "" %>>Online Income</option>
+           <option value="Other" <%= income.category === "Other" ? "selected" : "" %>>Other</option>
+    </select><br>
+    <button>Edit</button>
+    
+</form>

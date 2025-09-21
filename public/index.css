@@ -1,14 +1,24 @@
+* {
+  font-family:  sans-serif;
+  font-optical-sizing: auto;
+  /* font-weight: <weight>; */
+  font-style: normal;
+}
+
 body{
     margin: 0 !important;
     padding: 0;
 }
 
-#myChart{
-    /* margin-top: 20vh;
-    height: 7rem !important; */
-    width: 30% !important;
-}
-
 .content{
     margin-top: 15vh;
+    padding: 0 3rem;
+}
+
+.landing-page{
+    width: 100%;
+    /* height: 100vh; */
+    background-color: azure;
+    display: flex;
+    
 }

@@ -40,7 +40,71 @@
     </div>
 
     <div class="home-section">
+            <div class="toggle">
+                <button id="expense-toggle" class="toggle-effect" >Expense</button>
+                <button id="income-toggle">Income</button>
+            </div>
 
+            <div class="exp-page">
+                 <div class="bar">
+                    <h5>Budget Remaining</h5>
+                    <h1>&#8377;<%- totalIncome - totalExpense %></h1>
+                    <div class="progress-bar income-progress">
+                        <div class="progress">&#8377; <%= totalIncome%>.00</div>
+                        <span>Earned</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress" style="width: <%= expenseProgress%>%;">&#8377; <%= totalExpense%>.00</div>
+                        <span>Spend</span>
+                    </div>
+                 </div>
+                 <div class="spend-category">
+                    <h3>Top Spending</h3>
+                    <div class="category">
+                        <div class="card"></div>
+                        <span>Electricity</span>
+                        <div class="card"></div>
+                        <div class="card"></div>
+                        <div class="card"></div>
+                        <div class="card"></div>
+                        <div class="card"></div>
+                        <div class="card"></div>
+                        <div class="card"></div>
+                        <div class="card"></div>
+                        <div class="card"></div>
+                    </div>
+                 </div>
+            </div>
+
+            <div class="inc-page">
+                 <div class="bar">
+                    <h5>Budget Remaining</h5>
+                    <h1>&#8377;<%- totalIncome - totalExpense %></h1>
+                    <div class="progress-bar income-progress">
+                        <div class="progress">&#8377; <%= totalIncome%>.00</div>
+                        <span>Earned</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress" style="width: <%= expenseProgress%>%;">&#8377; <%= totalExpense%>.00</div>
+                        <span>Spend</span>
+                    </div>
+                 </div>
+                 <div class="spend-category">
+                    <h3>Top Earnings</h3>
+                    <div class="category">
+                        <div class="card"></div>
+                        <div class="card"></div>
+                        <div class="card"></div>
+                        <div class="card"></div>
+                        <div class="card"></div>
+                        <div class="card"></div>
+                        <div class="card"></div>
+                        <div class="card"></div>
+                        <div class="card"></div>
+                        <div class="card"></div>
+                    </div>
+                 </div>
+            </div>
     </div>
 </div>
 
@@ -79,3 +143,25 @@
 <div class="diff">
     <h3>Difference : <%- totalIncome - totalExpense %></h3>
 </div> -->
+
+
+
+<script>
+    let expToggleBtn = document.querySelector("#expense-toggle");
+    let incToggleBtn = document.querySelector("#income-toggle");
+    let expPage = document.querySelector(".exp-page");
+    let incPage = document.querySelector(".inc-page");
+
+    expToggleBtn.addEventListener("click",()=>{
+        expToggleBtn.classList.add("toggle-effect");
+        incToggleBtn.classList.remove("toggle-effect");
+        expPage.style.display = "block";
+    })
+
+    incToggleBtn.addEventListener("click",()=>{
+        incToggleBtn.classList.add("toggle-effect");
+        expToggleBtn.classList.remove("toggle-effect");
+        expPage.style.display = "none";
+
+    })
+</script>

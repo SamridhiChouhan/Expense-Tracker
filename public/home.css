@@ -1,0 +1,136 @@
+.home-section{
+    font-size: larger;
+    width: 55%;
+    height: 100%;
+    position: fixed;
+    right: 0;
+    margin: 2rem 4rem 2rem 2rem;
+}
+
+.toggle{
+    height: 3rem;
+    background-color: white;
+    margin-bottom: 2rem;
+    display: flex;
+    /* border: 0.1rem solid rgb(78, 78, 244); */
+    border: 0.1rem solid rgb(107,110,211);
+    border-radius: 0.5rem;
+    /* color: rgb(78, 78, 244); */
+}
+
+.toggle button {
+    width: 50%;
+    height: 100%;
+    /* border-radius: 1rem; */
+    border: none;
+    font-size: medium;
+    font-weight: bold;
+    /* color: rgb(78, 78, 244); */
+    color: rgb(107,110,211);
+    transition: all 0.2s ease-in;
+}
+
+#expense-toggle{
+    border-top-left-radius: 0.5rem;
+    border-bottom-left-radius: 0.5rem;
+}
+
+.toggle-effect{
+    border-radius: 0.5rem;
+    /* background-color: rgb(78, 78, 244); */
+    background-color: rgb(107,110,211);
+    color: white !important;
+}
+
+#income-toggle{
+    border-top-right-radius: 0.5rem;
+    border-bottom-right-radius: 0.5rem;
+}
+
+.exp-page {
+    /* min-height: fit-content; */
+    /* background-color: pink; */
+    /* display: none; */
+    transition: all 0.2s ease-in;
+    
+}
+
+.inc-page{
+    /* background-color: grey; */
+}
+
+.bar{
+    height: 12rem;
+    /* background-color: antiquewhite; */
+    background-color: white;
+    margin-bottom: 2rem;
+    border-radius: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    /* align-items: center; */
+    padding: 2rem;
+} 
+
+.bar h1 ,h5 {
+    margin: 0;
+}
+
+.progress-bar{
+    width: 100%;
+    height: 1.5rem;
+    background-color: rgb(244, 243, 243);
+    border-radius: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* padding: 0 1rem; */
+    /* text-align: right; */
+    padding-right: 1rem;
+    font-size: small;
+}
+
+.progress{
+    height: 100%;
+    /* width: 50%; */
+    background-color: pink;
+    border-bottom-left-radius: 1rem;
+    border-top-left-radius: 1rem;
+    text-align: left;
+    padding-left: 1rem;
+    display: flex;
+    align-items: center;
+}
+
+.income-progress{
+    background-color: pink;
+}
+
+.spend-category{
+    height: 10rem;
+    /* background-color: antiquewhite; */
+    /* padding: 0.5rem; */
+    padding-top: 0.5rem;
+    padding-left: 2rem;
+}
+
+.spend-category h3{
+    margin: 0;
+    padding-top: 0.5rem;
+}
+
+
+.category{
+    overflow-x: auto;
+    display: flex;
+    scrollbar-width: none;
+}
+
+.card{
+    height: 4rem;
+    width: 4rem;
+    background-color: rgb(250, 215, 221);
+    margin: 1rem;
+    flex-shrink: 0;
+    border-radius: 1rem;
+}

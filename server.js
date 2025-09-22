@@ -46,8 +46,10 @@ app.get("/" , async(req,res)=>{
     for(income of allIncomes){
        totalIncome = totalIncome + income.amount ;  
     }
+
+    let expenseProgress = totalExpense / totalIncome * 100 ;
     
-    res.render("index" , {allExpense, totalExpense , allIncomes , totalIncome});
+    res.render("index" , {allExpense, totalExpense , allIncomes , totalIncome , expenseProgress});
 
     
 })

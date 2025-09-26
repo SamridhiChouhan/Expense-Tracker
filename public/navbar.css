@@ -1,5 +1,5 @@
 .navbar{
-     background: linear-gradient(90deg, #667eea, #764ba2);
+     background: linear-gradient(90deg, rgb(94,91,255),rgb(155,79,255));
      height: 10vh;
      color: white;
      padding: 1rem 2rem;
@@ -8,12 +8,19 @@
      justify-content: space-between;
      position: fixed;
      top: 0;
-     width: 100vw;
+     width: 100%;
 }
 .nav-brand{
     font-size: larger;
     padding: 0rem 1rem;
 }
+
+.nav-option{
+    /* width: 100%; */
+    /* display: flex; */
+    /* justify-content: space-between; */
+}
+
 
 .nav-month {
     /* width: ; */
@@ -24,5 +31,5 @@
     color: #ccc;
     text-decoration: none;
     font-size: medium;
-    padding: 0rem 1rem;
+    padding: 0rem 0.5rem 0rem 1rem;
 }

@@ -13,13 +13,19 @@
                   <div class="exp-info">
 
                     <% if(expense.category === "Electricity"){%>
-                            <div class="icon" style="background-color:#f1c40f;"></div>
+                            <div class="icon" style="background-color: rgb(254,171,84);"></div>
                     <% } else if(expense.category === "Rent"){ %>
-                            <div class="icon" style="background-color:#3498db ;"></div>
+                            <div class="icon" style="background-color: rgb(114,87,255) ;"></div>
                     <%  } else if(expense.category === "Grocery"){ %>
-                            <div class="icon" style="background-color: #2ecc71 ;"></div>
+                            <div class="icon" style="background-color: rgb(0,225,188) ;"></div>
                     <% } else if(expense.category === "Travel"){ %>
-                            <div class="icon" style="background-color: #e67e22 ;"></div>
+                            <div class="icon" style="background-color:  rgb(255,94,137) ;"></div>
+                    <% } else if(expense.category === "Food"){ %>
+                            <div class="icon" style="background-color:  #FEE440 ;"></div>
+                    <% } else if(expense.category === "Medicine"){ %>
+                            <div class="icon" style="background-color: #4BC0C0;"></div>
+                    <% } else if(expense.category === "Home"){ %>
+                            <div class="icon" style="background-color:  #f725db;"></div>
                     <% } else { %>
                             <div class="icon" style="background-color: #95a5a6;"></div>
                     <% } %>
@@ -31,7 +37,13 @@
                     </div>
                   <div class="exp-amount">
                        <p>&#8377;<%= expense.amount %></p>
-                       <a href="/editExpense/<%=expense.id %>"><i class="fa-regular fa-pen-to-square"></i></a>
+                       <div>
+                            <a href="/editExpense/<%=expense.id %>"><i class="fa-regular fa-pen-to-square"></i></a>
+                            <form action="/deleteExpense/<%= expense.id%>?_method=DELETE" method="post"
+                                   onsubmit="return confirm('Are you sure you want to delete this expense?');">
+                                <button><i class="fa-solid fa-trash"></i></button>    
+                            </form>
+                       </div>
                     </div>
              </div>
              <% } %>
@@ -39,111 +51,8 @@
         </div>
     </div>
 
-    <div class="home-section">
-            <div class="toggle">
-                <button id="expense-toggle" class="toggle-effect" >Expense</button>
-                <button id="income-toggle">Income</button>
-            </div>
-
-            <div class="exp-page">
-                 <div class="bar">
-                    <h5>Budget Remaining</h5>
-                    <h1>&#8377;<%- totalIncome - totalExpense %></h1>
-                    <div class="progress-bar income-progress">
-                        <div class="progress">&#8377; <%= totalIncome%>.00</div>
-                        <span>Earned</span>
-                    </div>
-                    <div class="progress-bar">
-                        <div class="progress" style="width: <%= expenseProgress%>%;">&#8377; <%= totalExpense%>.00</div>
-                        <span>Spend</span>
-                    </div>
-                 </div>
-                 <div class="spend-category">
-                    <h3>Top Spending</h3>
-                    <div class="category">
-                        <div class="card"></div>
-                        <span>Electricity</span>
-                        <div class="card"></div>
-                        <div class="card"></div>
-                        <div class="card"></div>
-                        <div class="card"></div>
-                        <div class="card"></div>
-                        <div class="card"></div>
-                        <div class="card"></div>
-                        <div class="card"></div>
-                        <div class="card"></div>
-                    </div>
-                 </div>
-            </div>
-
-            <div class="inc-page">
-                 <div class="bar">
-                    <h5>Budget Remaining</h5>
-                    <h1>&#8377;<%- totalIncome - totalExpense %></h1>
-                    <div class="progress-bar income-progress">
-                        <div class="progress">&#8377; <%= totalIncome%>.00</div>
-                        <span>Earned</span>
-                    </div>
-                    <div class="progress-bar">
-                        <div class="progress" style="width: <%= expenseProgress%>%;">&#8377; <%= totalExpense%>.00</div>
-                        <span>Spend</span>
-                    </div>
-                 </div>
-                 <div class="spend-category">
-                    <h3>Top Earnings</h3>
-                    <div class="category">
-                        <div class="card"></div>
-                        <div class="card"></div>
-                        <div class="card"></div>
-                        <div class="card"></div>
-                        <div class="card"></div>
-                        <div class="card"></div>
-                        <div class="card"></div>
-                        <div class="card"></div>
-                        <div class="card"></div>
-                        <div class="card"></div>
-                    </div>
-                 </div>
-            </div>
-    </div>
+    <%- include("./includes/home.ejs")  %>
 </div>
-
-<!-- <div class="cashBook" style="display: flex;">
-<div class="expense" style="margin-right: 10rem;">
-    <h3>Total expense : <%- totalExpense %></h3>
-
-    <a href="/addExpense">Upgrade</a>
-    <br><br>
-    <% for(expense of allExpense){ %>
-    <div  class="total"><%-expense.expense_title %> <%- expense.amount%></div>
-    <a href="/editExpense/<%=expense.id %>">Edit</a>
-    <form action="/deleteExpense/<%= expense.id%>?_method=DELETE" method="post">
-        <button>Delete</button>
-    </form>
-    <br><br>
-    <% } %>
-</div>
-
-<div class="income">
-    <h3>Total income : <%- totalIncome %></h3>
-
-    <a href="/addIncome">Add-Income</a>
-    <br><br>
-    <% for(income of allIncomes){ %>
-    <div  class="total"><%-income.income_source %> <%- income.amount%></div>
-    <a href="/editIncome/<%=income.id %>">Edit</a>
-    <form action="/deleteIncome/<%= income.id%>?_method=DELETE" method="post">
-        <button>Delete</button>
-    </form>
-    <br><br>
-    <% } %>
-</div>
-</div>
-
-<div class="diff">
-    <h3>Difference : <%- totalIncome - totalExpense %></h3>
-</div> -->
-
 
 
 <script>
@@ -153,13 +62,18 @@
     let incPage = document.querySelector(".inc-page");
 
     expToggleBtn.addEventListener("click",()=>{
+        expToggleBtn.classList.remove("toggle-bg");
         expToggleBtn.classList.add("toggle-effect");
         incToggleBtn.classList.remove("toggle-effect");
+        incToggleBtn.classList.add("toggle-bg")
+        // incToggleBtn.style.backgroundColor = "white";
         expPage.style.display = "block";
     })
 
     incToggleBtn.addEventListener("click",()=>{
         incToggleBtn.classList.add("toggle-effect");
+        incToggleBtn.classList.remove("toggle-bg")
+        expToggleBtn.classList.add("toggle-bg");
         expToggleBtn.classList.remove("toggle-effect");
         expPage.style.display = "none";
 

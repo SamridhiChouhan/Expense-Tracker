@@ -12,6 +12,7 @@ const incomeSchema = new Schema({
       type : Number,
    },
    category : {
+      type : String ,
       enum : ["Salary", "Freelance", "Gift", "Investment", "Side Hustle", "Sale", "Interest", "Online Income" , "Other"]
    },
    created_at : {

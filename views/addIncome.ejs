@@ -1,21 +1,36 @@
-<% layout("./layouts/boilerplate") %>
+<% layout("./layouts/boilerplate") %><%  for(expense of expenseCatwise){%> 
+        <div><%= expense.expense_title  %> = <%= expense.amount  %></div>
+<%    }  %>
 
 
-<div><br>
+<div class="edit add">
+
+    <h2>Add New Income</h2>
+
     <form action="" method="post" >
-       Enter title : <input type="text" name="income_source"><br>
-       Enter price : <input type="number" name="amount"><br>
-       Category : <select name="category" id="">
-           <option value="Salary">Salary</option>
-           <option value="Freelance">Freelance</option>
-           <option value="Gift">Gift</option>
-           <option value="Investment">Investment</option>
-           <option value="Side Hustle">Side Hustle</option>
-           <option value="Sale">Sale</option>
-           <option value="Interest">Interest</option>
-           <option value="Online Income">Online Income</option>
-           <option value="Other">Other</option>
-       </select><br>
+        <div>
+            <label for="income_source">Enter Source</label>
+            <input type="text" name="income_source" id="income_source" placeholder="eg. Salary">
+        </div>
+        <div>
+            <label for="income_amount">Enter Amount</label>
+            <input type="number" name="amount" id="income_amount" placeholder="eg. 60000">
+        </div>
+        <div>
+            <label for="income_category">Select Category</label>
+            <select name="category" id="income_category">
+                <option value="Salary">Salary</option>
+                <option value="Freelance">Freelance</option>
+                <option value="Gift">Gift</option>
+                <option value="Investment">Investment</option>
+                <option value="Side Hustle">Side Hustle</option>
+                <option value="Sale">Sale</option>
+                <option value="Interest">Interest</option>
+                <option value="Online Income">Online Income</option>
+                <option value="Other">Other</option>
+            </select>
+        </div>
+          
         <button>Add</button>
     </form>
 </div>

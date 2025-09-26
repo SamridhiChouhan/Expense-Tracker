@@ -1,0 +1,120 @@
+<div class="home-section">
+            <div class="toggle">
+                <button id="expense-toggle" class="toggle-effect" >Expense</button>
+                <button id="income-toggle" class="toggle-bg">Income</button>
+            </div>
+
+            <div class="exp-page">
+                 <div class="bar">
+                    <div class="bar-head">
+                        <h5>Budget Remaining</h5>
+                        <a href="/addExpense"><i class="fa-solid fa-plus"></i> Add-Expense</a>
+                    </div>
+                    <h1>&#8377;<%- totalIncome - totalExpense %></h1>
+                    <div class="progress-bar income-progress">
+                        <div class="progress">&#8377; <%= totalIncome%>.00</div>
+                        <span>Earned</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress" style="width: <%= expenseProgress%>%;">&#8377; <%= totalExpense%>.00</div>
+                        <span>Spend</span>
+                    </div>
+                 </div>
+                 <div class="spend-category">
+                    <h3>Top Spending</h3>
+                    <div class="category">
+                        <div class="card">
+                            <a href="/expense?category=Electricity"><div class="card-icon" style="background-color:  rgb(250, 219, 186) ;"></div></a>
+                            <p>Electricity</p>
+                        </div>
+                        <div class="card">
+                            <a href="/expense?category=Rent"><div class="card-icon" style="background-color: rgb(196, 185, 252);"></div></a>
+                            <p>Rent</p>
+                        </div>
+                        <div class="card">
+                            <a href="/expense?category=Grocery"><div class="card-icon" style="background-color: rgb(195, 255, 245) ;"></div></a>
+                            <p>Grocery</p>
+                        </div>
+                        <div class="card">
+                            <a href="/expense?category=Travel"><div class="card-icon" style="background-color: rgb(253, 178, 198);"></div></a>
+                            <p>Travel</p>
+                        </div>
+                        <div class="card">
+                            <a href="/expense?category=Home"><div class="card-icon"  style="background-color:  #fcb6f3;" ></div></a>
+                            <p>Home</p>
+                        </div>
+                        <div class="card">
+                            <a href="/expense?category=Medicine"><div class="card-icon" style="background-color: #9ed9d9;"></div></a>
+                            <p>Medicine</p>
+                        </div>
+                        <div class="card">
+                            <a href="/expense?category=Food"><div class="card-icon" style="background-color:  #fff7c3;"></div></a>
+                            <p>Food</p>
+                        </div>
+                        <div class="card">
+                            <a href="/expense?category=Other"><div class="card-icon" style="background-color: #d6d8d8;;"></div></a>
+                            <p>Other</p>
+                        </div> 
+                    </div>
+                 </div>
+            </div>
+
+            <div class="inc-page">
+                 <div class="bar">
+                    <div class="bar-head">
+                        <h5>Budget Remaining</h5>
+                        <a href="/addIncome"><i class="fa-solid fa-plus"></i> Add-Income</a>
+                    </div>
+                    <h1>&#8377;<%- totalIncome - totalExpense %></h1>
+                    <div class="progress-bar income-progress">
+                        <div class="progress">&#8377; <%= totalIncome%>.00</div>
+                        <span>Earned</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress" style="width: <%= expenseProgress%>%;">&#8377; <%= totalExpense%>.00</div>
+                        <span>Spend</span>
+                    </div>
+                 </div>
+                 <div class="spend-category">
+                    <h3>Top Earnings</h3>
+                    <div class="category">
+                        <div class="card">
+                            <a href="/income?category=Salary"><div class="card-icon" style="background-color: #afe5e5 ;"></div></a>
+                            <p>Salary</p>
+                        </div>
+                        <div class="card">
+                            <a href="/income?category=Freelance"><div class="card-icon" style="background-color: #f7d3b0 ;"></div></a>
+                            <p>Freelance</p>
+                        </div>
+                        <div class="card">
+                            <a href="/income?category=Gift"><div class="card-icon" style="background-color: #f7aecf ;"></div></a>
+                            <p>Gift</p>
+                        </div>
+                        <div class="card">
+                            <a href="/income?category=Investment"><div class="card-icon" style="background-color: #ddc2fe ; "></div></a>
+                            <p>Investment</p>
+                        </div>
+                        <div class="card">
+                            <a href="/income?category=Side Hustle"><div class="card-icon"  style="background-color: #ccfbb7 ; " ></div></a>
+                            <p>Side Hustle</p>
+                        </div>
+                        <div class="card">
+                            <a href="/income?category=Sale"><div class="card-icon" style="background-color: #fcc9d0; "></div></a>
+                            <p>Sale</p>
+                        </div>
+                        <div class="card">
+                            <a href="/income?category=Interest"><div class="card-icon" style="background-color: #f8f0bc;"></div></a>
+                            <p>Interest</p>
+                        </div>
+                        <div class="card">
+                            <a href="/income?category=Online Income"><div class="card-icon" style="background-color: #bed5fb;"></div></a>
+                            <p>Online Income</p>
+                        </div>
+                        <div class="card">
+                            <a href="/income?category=Other"><div class="card-icon" style="background-color: #d6d8d8;;"></div></a>
+                            <p>Other</p>
+                        </div> 
+                    </div>
+                 </div>
+            </div>
+    </div>

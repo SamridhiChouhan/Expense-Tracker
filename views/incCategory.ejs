@@ -1,0 +1,6 @@
+<% layout("./layouts/boilerplate") %>
+
+
+<%  for(income of incomeCatwise){%> 
+        <div><%= income.income_source  %> = <%= income.amount  %></div>
+<%    }  %>

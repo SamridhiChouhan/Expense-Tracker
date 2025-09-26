@@ -1,17 +1,35 @@
 <% layout("./layouts/boilerplate") %>
 
 
-<div><br>
-    <form action="" method="post" >
-       Enter title : <input type="text" name="expense_title"><br>
-       Enter price : <input type="number" name="amount"><br>
-       Category : <select name="category" id="">
-           <option value="Electricity">Electricity</option>
-           <option value="Rent">Rent</option>
-           <option value="Grocery">Grocery</option>
-           <option value="Travel">Travel</option>
-           <option value="Other" selected>Other</option>
-       </select><br>
+
+<div class="edit add">
+
+    <h2>Add New Expense</h2>
+
+    <form  method="post" >
+        <div>
+            <label for="expense_title" id="expense_title">Enter Title</label>
+            <input type="text" name="expense_title" id="expense_title" placeholder="eg. Bike repair">
+        </div>
+        <div>
+            <label for="expense_amount">Enter Amount</label>
+            <input type="number" name="amount" id="expense_amount" placeholder="eg. 1200">
+        </div>
+        <div>
+            <label for="expense_category">Select Category</label>
+            <select name="category" id="expense_category">
+                <option value="Electricity">Electricity</option>
+                <option value="Rent">Rent</option>
+                <option value="Grocery">Grocery</option>
+                <option value="Travel">Travel</option>
+                <option value="Food">Food</option>
+                <option value="Medicine">Medicine</option>
+                <option value="Home">Home</option>
+                <option value="Other" selected>Other</option>
+            </select>
+        </div>
+       
         <button>Add</button>
     </form>
-</div>
+</div> 
+

@@ -152,6 +152,32 @@ app.delete("/deleteIncome/:id" , async(req,res)=>{
     res.redirect("/");
 })
 
+app.get("/expense" , async(req,res)=>{
+    let {category} = req.query ;
+    let expenseCatwise = await Expense.find({category : `${req.query.category}`});
+
+    let sum = 0 ;
+
+    for(expense of expenseCatwise){
+        sum = sum + expense.amount;
+    }
+
+    res.render("expCategory" , { expenseCatwise , sum});
+})
+
+app.get("/income" ,async(req,res)=>{
+    let {category} = req.query ;
+    let incomeCatwise = await Income.find({category : `${req.query.category}`})
+    // console.log(allIncomes)
+
+    let sum = 0 ;
+
+    for(income of incomeCatwise){
+        sum = sum + income.amount;
+    }
+
+    res.render("incCategory" , {incomeCatwise , sum});
+})
 
 app.listen(port , ()=>{
     console.log(`Server is listening on ${port}`);

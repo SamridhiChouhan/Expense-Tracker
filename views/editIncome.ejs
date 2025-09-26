@@ -1,12 +1,20 @@
 <% layout("./layouts/boilerplate") %>
 
-
-<h2>Edit</h2>
+<div class="edit">
+<h2>Edit Income</h2>
 
 <form action="/editIncome/<%= income.id %>?_method=PATCH" method="post">
-    <input type="text" name="income_source"  value="<%- income.income_source %>"><br><br>
-    <input type="number" name="amount" value=<%- income.amount %>><br><br>
-    <select name="category">
+    <div>
+        <label for="income_source">Income-Source</label>
+        <input type="text" name="income_source" id="income_source"  value="<%- income.income_source %>">
+    </div>
+    <div>
+        <label for="income_amount">Income-Amount</label>
+        <input type="number" name="amount" id="income_amount" value=<%- income.amount %>>
+    </div>
+    <div>
+        <label for="income_category">Income-Category</label>
+        <select name="category">
            <option value="Salary" <%= income.category === "Salary"  ? "selected" : "" %>>Salary</option>
            <option value="Freelance"<%= income.category === "Freelance" ? "selected" : "" %>>Freelance</option>
            <option value="Gift" <%= income.category === "Gift" ? "selected" : "" %>>Gift</option>
@@ -16,7 +24,10 @@
            <option value="Interest" <%= income.category === "Interest" ? "selected" : "" %>>Interest</option>
            <option value="Online Income" <%= income.category === "Online Income" ? "selected" : "" %>>Online Income</option>
            <option value="Other" <%= income.category === "Other" ? "selected" : "" %>>Other</option>
-    </select><br>
+         </select>
+    </div>
+    
     <button>Edit</button>
     
 </form>
+</div>

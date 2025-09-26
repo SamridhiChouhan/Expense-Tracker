@@ -14,7 +14,7 @@ const expenseSchema = new Schema({
    },
    category : {
       type : String ,
-      enum : ["Electricity", "Rent" , "Grocery" , "Travel" , "Other"]
+      enum : ["Electricity", "Rent" , "Grocery" , "Travel" , "Food" , "Medicine" , "Home" , "Other"]
    },
    created_at : {
       type : Date ,

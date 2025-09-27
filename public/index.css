@@ -21,5 +21,12 @@ body{
     /* height: 100vh; */
     /* background-color: azure; */
     display: flex;
-    
+}
+
+#myPie{
+    /* height: 100% !important; */
+}
+
+#myPie {
+  /* margin-right: 40px !important; 👈 creates gap */
 }

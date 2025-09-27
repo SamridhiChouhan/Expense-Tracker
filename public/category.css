@@ -1,20 +1,39 @@
 .category-wise h2{
-    background-color: rgb(235, 235, 235);
+    background-color: rgb(242, 241, 241);
     padding: 1rem;
-    /* border: 1px solid black; */
     border-radius: 1rem;
-    
-    /* color: grey; */
 }
 
 .cat-row{
     display: flex ;
-    /* justify-content: space-between; */
+    justify-content: space-between;
     align-items: center;
-    background-color: azure;
-    margin: 1rem 0;
+    margin: 1rem 0 ;
+    padding: 0 1rem;
 }
 
 .cat-row .icon{
     margin-right: 2rem ;
+}
+
+.cat-row h3 {
+    margin: 0;
+}
+
+.cat-row p{
+    font-size: large;
+    margin: 0;
+}
+
+.cat-info{
+    display: flex;
+    align-items: center;
+}
+
+.cat-info h3{
+    font-size: large;
+}
+
+.cat-info p {
+    font-size: small;
 }

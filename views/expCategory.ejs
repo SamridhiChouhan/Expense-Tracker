@@ -6,33 +6,38 @@
     <h2>Total : <%= sum  %></h2> 
 
 <%  for(expense of expenseCatwise){%> 
-        <div class="cat-row">
-            <% if(expense.category === "Electricity"){%>
-                <div class="icon" style="background-color: rgb(254,171,84);"></div>
+    <div class="cat-row">
+               <div class="cat-info">    
+                   <% if(expense.category === "Electricity"){%>
+                        <div class="icon" style="background-color: rgb(254,171,84);"></div>
                     <% } else if(expense.category === "Rent"){ %>
-                            <div class="icon" style="background-color: rgb(114,87,255) ;"></div>
+                        <div class="icon" style="background-color: rgb(114,87,255) ;"></div>
                     <%  } else if(expense.category === "Grocery"){ %>
-                            <div class="icon" style="background-color: rgb(0,225,188) ;"></div>
+                        <div class="icon" style="background-color: rgb(0,225,188) ;"></div>
                     <% } else if(expense.category === "Travel"){ %>
-                            <div class="icon" style="background-color:  rgb(255,94,137) ;"></div>
+                        <div class="icon" style="background-color:  rgb(255,94,137) ;"></div>
                     <% } else if(expense.category === "Food"){ %>
-                            <div class="icon" style="background-color:  #FEE440 ;"></div>
+                        <div class="icon" style="background-color:  #FEE440 ;"></div>
                     <% } else if(expense.category === "Medicine"){ %>
-                            <div class="icon" style="background-color: #4BC0C0;"></div>
+                        <div class="icon" style="background-color: #4BC0C0;"></div>
                     <% } else if(expense.category === "Home"){ %>
-                            <div class="icon" style="background-color:  #f725db;"></div>
+                        <div class="icon" style="background-color:  #f725db;"></div>
                     <% } else { %>
-                            <div class="icon" style="background-color: #95a5a6;"></div>
+                        <div class="icon" style="background-color: #95a5a6;"></div>
                     <% } %>
-                 <div>
-                      <h3><%= expense.expense_title  %> </h3>
-                      <p><%= expense.category  %></p>
-                      <p><%= expense.created_at.toString().slice(0,16)%></p>
-                      <p><%= expense.created_at.toString().slice(16,24)  %></p>
-                  </div>
-                  <p>
-                        <%= expense.amount  %> 
-                  </p>
+                
+
+                      <div >
+                                <h3><%= expense.expense_title.toUpperCase()  %> </h3>
+                                <p><%= expense.category  %></p>
+                                <p><%= expense.created_at.toString().slice(0,16)%></p>
+                                <p><%= expense.created_at.toString().slice(16,24)  %></p>
+                      </div>
+                </div>
+
+                <p class="cat-amount">
+                     &#8377; <%= expense.amount  %> 
+                </p>
         </div> 
 <%    }  %>
 </div>

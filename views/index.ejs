@@ -4,7 +4,8 @@
 <div class="landing-page">
     <div class="graph-section">
         <div class="graph-box">
-         
+           <canvas id="myPie" width="600" height="400"></canvas>
+
         </div>
         <div class="expense-history">
 
@@ -49,6 +50,7 @@
              <% } %>
 
         </div>
+       
     </div>
 
     <%- include("./includes/home.ejs")  %>
@@ -60,6 +62,7 @@
     let incToggleBtn = document.querySelector("#income-toggle");
     let expPage = document.querySelector(".exp-page");
     let incPage = document.querySelector(".inc-page");
+    let expHistory = document.querySelector(".expense-history")
 
     expToggleBtn.addEventListener("click",()=>{
         expToggleBtn.classList.remove("toggle-bg");
@@ -76,6 +79,43 @@
         expToggleBtn.classList.add("toggle-bg");
         expToggleBtn.classList.remove("toggle-effect");
         expPage.style.display = "none";
+        // expHistory.style.display = "none"; 
 
     })
+
+      const ctx = document.getElementById("myPie").getContext("2d");
+
+      const data = {
+        labels: <%- JSON.stringify(chartData.map(item => item.name)) %>,
+        datasets: [{
+          data: <%- JSON.stringify(chartData.map(item => item.value)) %>,
+          backgroundColor: ["rgb(0,225,188)" ,"rgb(114,87,255)" , "rgb(254,171,84)" ,"rgb(255,94,137)","#FEE440" , "#4BC0C0", "#f725db" , "#95a5a6"], // bright palette
+          borderColor: "#fff",
+          borderWidth: 2 ,
+           cutout: "60%" 
+        }]    
+      };
+
+      new Chart(ctx, {
+        type: "doughnut",
+        data: data,
+        options: {
+          responsive: true,
+          plugins: {
+            legend: { position: "right" ,
+                labels: {
+                   boxWidth: 10,
+                   boxHeight: 10 ,
+                //    paddingLeft : 20
+                }
+             },
+            
+          }
+        } ,
+         layout: {
+    padding: {
+      right: 60   // 👈 adds space between chart & legend
+    }
+  }
+      });
 </script>

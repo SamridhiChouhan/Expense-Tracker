@@ -165,6 +165,7 @@
     overflow-x: auto;
     display: flex;
     scrollbar-width: none;
+    margin-bottom: 10rem;
 }
 
 .card{

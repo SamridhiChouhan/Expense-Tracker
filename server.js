@@ -10,6 +10,7 @@ const Expense = require ("./models/expense");
 const Income = require ("./models/income");
 
 
+
 app.use(express.urlencoded({extended : true}));
 app.use(methodOverride('_method'));
 
@@ -33,23 +34,48 @@ main()
    .catch((err) => console.log(err));
 
 
+// sample pie chart data
+// const chartData = [
+//   { name: , value: 400 },
+//   { name: "Group B", value: 300 },
+//   { name: "Group C", value: 300 },
+//   { name: "Group D", value: 200 }
+// ];
+
+
 
 app.get("/" , async(req,res)=>{
-    let allExpense = await Expense.find({});
+    let allExpense = await Expense.find({}).sort({created_at : -1 });
     let totalExpense = 0 ;
     let totalIncome = 0 ;
     for(expense of allExpense){
         totalExpense = totalExpense + expense.amount ;
     }
 
-    let allIncomes = await Income.find({});
+    let allIncomes = await Income.find({}).sort({created_at : -1 });
     for(income of allIncomes){
        totalIncome = totalIncome + income.amount ;  
     }
 
     let expenseProgress = totalExpense / totalIncome * 100 ;
+
+    const result = await Expense.aggregate([
+      {
+        $group: {
+          _id: "$category",
+          total: { $sum: "$amount" }
+        }
+      }
+    ]);
+
+    // convert to chartData format
+    const chartData = result.map(item => ({
+      name: item._id,
+      value: item.total
+    }));
+
     
-    res.render("index" , {allExpense, totalExpense , allIncomes , totalIncome , expenseProgress});
+    res.render("index" , {allExpense, totalExpense , allIncomes , totalIncome , expenseProgress  , chartData});
 
     
 })
@@ -154,7 +180,7 @@ app.delete("/deleteIncome/:id" , async(req,res)=>{
 
 app.get("/expense" , async(req,res)=>{
     let {category} = req.query ;
-    let expenseCatwise = await Expense.find({category : `${req.query.category}`});
+    let expenseCatwise = await Expense.find({category : `${req.query.category}`}).sort({created_at : -1});
 
     let sum = 0 ;
 
@@ -167,7 +193,7 @@ app.get("/expense" , async(req,res)=>{
 
 app.get("/income" ,async(req,res)=>{
     let {category} = req.query ;
-    let incomeCatwise = await Income.find({category : `${req.query.category}`})
+    let incomeCatwise = (await Income.find({category : `${req.query.category}`}));
     // console.log(allIncomes)
 
     let sum = 0 ;

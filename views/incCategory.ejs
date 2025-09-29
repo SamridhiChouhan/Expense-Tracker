@@ -1,44 +1,40 @@
 <% layout("./layouts/boilerplate") %>
 
-
 <div class="category-wise">
-    <h2>Total : <%= sum  %></h2> 
+  <h2>Total : <%= sum %></h2>
 
-<%  for(income of incomeCatwise){%> 
-    <div class="cat-row">
-               <div class="cat-info">    
-                   <% if(income.category === "Salary"){%>
-                        <div class="icon" style="background-color: #4BC0C0;"></div>
-                    <% } else if(income.category === "Freelance"){ %>
-                        <div class="icon" style="background-color: #FF9F40;"></div>
-                    <%  } else if(income.category === "Gift"){ %>
-                        <div class="icon" style="background-color:#F72585;"></div>
-                    <% } else if(income.category === "Investment"){ %>
-                        <div class="icon" style="background-color: #9B5DE5  ;"></div>
-                    <% } else if(income.category === "Side Hustle"){ %>
-                        <div class="icon" style="background-color: #7ED957 ;"></div>
-                    <% } else if(income.category === "Sale"){ %>
-                        <div class="icon" style="background-color: #FF6B81 ;"></div>
-                    <% } else if(income.category === "Interest"){ %>
-                        <div class="icon" style="background-color: #Fee440 ;"></div>
-                    <% } else if(income.category === "Online Income"){ %>
-                        <div class="icon" style="background-color:  #3A86FF; "></div>
-                    <% } else { %>
-                        <div class="icon" style="background-color: #95a5a6;"></div>
-                    <% } %>
-                
+  <% for(income of incomeCatwise){%>
+  <div class="cat-row">
+    <div class="cat-info">
+      <% if(income.category === "Salary"){%>
+      <div class="icon" style="background-color: #4bc0c0"></div>
+      <% } else if(income.category === "Freelance"){ %>
+      <div class="icon" style="background-color: #ff9f40"></div>
+      <% } else if(income.category === "Gift"){ %>
+      <div class="icon" style="background-color: #f72585"></div>
+      <% } else if(income.category === "Investment"){ %>
+      <div class="icon" style="background-color: #9b5de5"></div>
+      <% } else if(income.category === "Side Hustle"){ %>
+      <div class="icon" style="background-color: #7ed957"></div>
+      <% } else if(income.category === "Sale"){ %>
+      <div class="icon" style="background-color: #ff6b81"></div>
+      <% } else if(income.category === "Interest"){ %>
+      <div class="icon" style="background-color: #fee440"></div>
+      <% } else if(income.category === "Online Income"){ %>
+      <div class="icon" style="background-color: #3a86ff"></div>
+      <% } else { %>
+      <div class="icon" style="background-color: #95a5a6"></div>
+      <% } %>
 
-                      <div >
-                                <h3><%= income.income_source.toUpperCase()  %> </h3>
-                                <p><%= income.category  %></p>
-                                <p><%= income.created_at.toString().slice(0,16)%></p>
-                                <p><%= income.created_at.toString().slice(16,24)  %></p>
-                      </div>
-                </div>
+      <div>
+        <h3><%= income.income_source.toUpperCase() %></h3>
+        <p><%= income.category %></p>
+        <p><%= income.created_at.toString().slice(0,16)%></p>
+        <p><%= income.created_at.toString().slice(16,24) %></p>
+      </div>
+    </div>
 
-                <p class="cat-amount">
-                      &#8377; <%= income.amount  %> 
-                </p>
-        </div> 
-<%    }  %>
+    <p class="cat-amount">&#8377; <%= income.amount %></p>
+  </div>
+  <% } %>
 </div>

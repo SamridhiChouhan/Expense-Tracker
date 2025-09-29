@@ -1,7 +1,6 @@
 .navbar{
      background: linear-gradient(90deg, rgb(94,91,255),rgb(155,79,255));
      height: 10vh;
-     color: white;
      padding: 1rem 2rem;
      display: flex;
      flex-direction: column;
@@ -10,20 +9,14 @@
      top: 0;
      width: 100%;
 }
-.nav-brand{
+.nav-brand a{
     font-size: larger;
     padding: 0rem 1rem;
+    color: white;
+    text-decoration: none;
 }
-
-.nav-option{
-    /* width: 100%; */
-    /* display: flex; */
-    /* justify-content: space-between; */
-}
-
 
 .nav-month {
-    /* width: ; */
     display: flex;
 }
 
@@ -32,4 +25,8 @@
     text-decoration: none;
     font-size: medium;
     padding: 0rem 0.5rem 0rem 1rem;
+}
+
+.nav-month a:hover{
+    color: white;
 }

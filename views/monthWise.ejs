@@ -1,0 +1,99 @@
+<% layout("./layouts/boilerplate") %>
+
+<div class="month-page">
+  <div><H2>Balance &#8377;<%- totalIncome - totalExpense %></H2></div>
+
+  <div class="month-history">
+    <div>
+      <h3 style="background-color: rgb(114, 87, 255)">Expenses</h3>
+      <% for(expense of groupedexpense) { %>
+      <div class="month-expense">
+        <div class="exp-info">
+          <% if(expense.category === "Electricity"){%>
+          <div class="icon" style="background-color: rgb(254, 171, 84)">
+            <i class="fa-solid fa-plug"></i>
+          </div>
+          <% } else if(expense.category === "Rent"){ %>
+          <div class="icon" style="background-color: rgb(114, 87, 255)">
+            <i class="fa-solid fa-house"></i>
+          </div>
+          <% } else if(expense.category === "Grocery"){ %>
+          <div class="icon" style="background-color: rgb(0, 225, 188)">
+            <i class="fa-solid fa-cart-shopping"></i>
+          </div>
+          <% } else if(expense.category === "Travel"){ %>
+          <div class="icon" style="background-color: rgb(255, 94, 137)">
+            <i class="fa-solid fa-plane"></i>
+          </div>
+          <% } else if(expense.category === "Food"){ %>
+          <div class="icon" style="background-color: #fee440">
+            <i class="fa-solid fa-utensils"></i>
+          </div>
+          <% } else if(expense.category === "Medicine"){ %>
+          <div class="icon" style="background-color: #4bc0c0">
+            <i class="fa-solid fa-stethoscope"></i>
+          </div>
+          <% } else if(expense.category === "Home"){ %>
+          <div class="icon" style="background-color: #f725db">
+            <i class="fa-solid fa-house-chimney"></i>
+          </div>
+          <% } else { %>
+          <div class="icon" style="background-color: #95a5a6">
+            <i class="fa-solid fa-receipt"></i>
+          </div>
+          <% } %>
+
+          <div class="exp-head monthy">
+            <div class="exp-title"><%= expense.expense_title %></div>
+            <div class="exp-category"><%= expense.category %></div>
+          </div>
+        </div>
+
+        <div class="exp-amount">
+          <p>&#8377;<%= expense.amount %></p>
+        </div>
+      </div>
+
+      <% } %>
+    </div>
+
+    <div>
+      <h3 style="background-color: rgb(255, 94, 137)">Incomes</h3>
+      <% for(income of groupedincome) { %>
+      <div class="month-expense">
+        <div class="exp-info">
+          <% if(income.category === "Salary"){%>
+          <div class="icon" style="background-color: #4bc0c0"><i class="fa-solid fa-wallet"></i></div>
+          <% } else if(income.category === "Freelance"){ %>
+          <div class="icon" style="background-color: #ff9f40"><i class="fa-solid fa-sack-dollar"></i></div>
+          <% } else if(income.category === "Gift"){ %>
+          <div class="icon" style="background-color: #f72585"><i class="fa-solid fa-gift"></i></div></div>
+          <% } else if(income.category === "Investment"){ %>
+          <div class="icon" style="background-color: #9b5de5"><i class="fa-solid fa-hand-holding-dollar"></i></div>
+          <% } else if(income.category === "Side Hustle"){ %>
+          <div class="icon" style="background-color: #7ed957"><i class="fa-solid fa-laptop"></i></div>
+          <% } else if(income.category === "Sale"){ %>
+          <div class="icon" style="background-color: #ff6b81"><i class="fa-solid fa-money-bill-trend-up"></i></div>
+          <% } else if(income.category === "Interest"){ %>
+          <div class="icon" style="background-color: #fee440"><i class="fa-solid fa-landmark"></i></div>
+          <% } else if(income.category === "Online Income"){ %>
+          <div class="icon" style="background-color: #3a86ff"><i class="fa-solid fa-globe"></i></div>
+          <% } else { %>
+          <div class="icon" style="background-color: #95a5a6"><i class="fa-solid fa-receipt"></i></div>
+          <% } %>
+
+          <div class="exp-head monthly">
+            <div class="exp-title"><%= income.income_source %></div>
+            <div class="exp-category"><%= income.category %></div>
+          </div>
+        </div>
+
+        <div class="exp-amount">
+          <p>&#8377;<%= income.amount %></p>
+        </div>
+      </div>
+
+      <% } %>
+    </div>
+  </div>
+</div>

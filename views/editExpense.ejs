@@ -6,11 +6,11 @@
 <form action="/editExpense/<%= expense.id %>?_method=PATCH" method="post">
    <div>
         <label for="expense_title">Expense-Title</label>
-        <input type="text" name="expense_title" id="expense_title"  value="<%- expense.expense_title %>">
+        <input type="text" name="expense_title" id="expense_title"  value="<%- expense.expense_title %>" required>
    </div>
    <div>
         <label for="expense_amount">Expense-Amount</label>
-        <input type="number" name="amount" id="expense_amount" value=<%- expense.amount %>>    
+        <input type="number" name="amount" id="expense_amount" value="<%- expense.amount %>" required>    
    </div>
    <div>
         <label for="expense_category">Expense-Category</label>

@@ -65,18 +65,25 @@
   background-color: rgb(242, 241, 241);
   padding: 1rem;
   border-radius: 1rem;
+  text-align: center;
 }
 
 .month-page h3 {
   padding: 1rem;
   border-radius: 0.5rem;
   color: white;
+  text-align: center;
 }
 
-.month-history div {
+.month-data {
   width: 45%;
 }
 
+.month-expense .icon {
+  height: 5rem;
+  width: 5rem;
+}
+
 .monthly {
-  /* width: 60%; */
+  width: 50%;
 }

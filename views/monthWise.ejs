@@ -1,11 +1,11 @@
 <% layout("./layouts/boilerplate") %>
 
 <div class="month-page">
-  <div><H2>Balance &#8377;<%- totalIncome - totalExpense %></H2></div>
+  <div><H2>Balance : &#8377;<%- totalIncome - totalExpense %></H2></div>
 
   <div class="month-history">
-    <div>
-      <h3 style="background-color: rgb(114, 87, 255)">Expenses</h3>
+    <div class="month-data">
+      <h3 style="background-color: rgb(114, 87, 255) ;">Total Expenses : &#8377;<%= totalExpense %></h3>
       <% for(expense of groupedexpense) { %>
       <div class="month-expense">
         <div class="exp-info">
@@ -57,8 +57,8 @@
       <% } %>
     </div>
 
-    <div>
-      <h3 style="background-color: rgb(255, 94, 137)">Incomes</h3>
+    <div class="month-data">
+      <h3 style="background-color: rgb(255, 94, 137)">Total Incomes : &#8377;<%= totalIncome  %></h3>
       <% for(income of groupedincome) { %>
       <div class="month-expense">
         <div class="exp-info">
@@ -88,7 +88,7 @@
           </div>
         </div>
 
-        <div class="exp-amount">
+        <div class="exp-amount ">
           <p>&#8377;<%= income.amount %></p>
         </div>
       </div>

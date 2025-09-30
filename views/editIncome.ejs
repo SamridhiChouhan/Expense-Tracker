@@ -6,11 +6,11 @@
 <form action="/editIncome/<%= income.id %>?_method=PATCH" method="post">
     <div>
         <label for="income_source">Income-Source</label>
-        <input type="text" name="income_source" id="income_source"  value="<%- income.income_source %>">
+        <input type="text" name="income_source" id="income_source"  value="<%- income.income_source %>" required>
     </div>
     <div>
         <label for="income_amount">Income-Amount</label>
-        <input type="number" name="amount" id="income_amount" value=<%- income.amount %>>
+        <input type="number" name="amount" id="income_amount" value=<%- income.amount %> required>
     </div>
     <div>
         <label for="income_category">Income-Category</label>

@@ -1,32 +1,24 @@
 * {
-  font-family:  sans-serif;
+  font-family: sans-serif;
   font-optical-sizing: auto;
   /* font-weight: <weight>; */
   font-style: normal;
 }
 
-body{
-    margin: 0 !important;
-    padding: 0;
-    background-color: white;
+body {
+  margin: 0 !important;
+  padding: 0;
+  background-color: white;
 }
 
-.content{
-    margin-top: 15vh;
-    padding: 0 3rem;
+.content {
+  margin-top: 15vh;
+  padding: 0 3rem;
 }
 
-.landing-page{
-    width: 100%;
-    /* height: 100vh; */
-    /* background-color: azure; */
-    display: flex;
-}
-
-#myPie{
-    /* height: 100% !important; */
-}
-
-#myPie {
-  /* margin-right: 40px !important; 👈 creates gap */
+.landing-page {
+  width: 100%;
+  /* height: 100vh; */
+  /* background-color: azure; */
+  display: flex;
 }

@@ -1,8 +1,12 @@
-.graph-section {
+.graph-page {
   width: 38%;
+}
+
+.graph-section {
   height: auto;
   overflow-y: auto;
   scrollbar-width: none;
+  transition: all 0.2s ease-in;
   /* background-color: white; */
 }
 
@@ -100,4 +104,15 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  animation: visible 0.5s ease-in;
+  /* animation-timeline: view(); */
+}
+
+@keyframes visible {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }

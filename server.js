@@ -53,7 +53,16 @@ app.get("/", async (req, res) => {
 
   let expenseProgress = (totalExpense / totalIncome) * 100;
 
-  const result = await Expense.aggregate([
+  const expenseResult = await Expense.aggregate([
+    {
+      $group: {
+        _id: "$category",
+        total: { $sum: "$amount" },
+      },
+    },
+  ]);
+
+  const incomeResult = await Income.aggregate([
     {
       $group: {
         _id: "$category",
@@ -63,7 +72,12 @@ app.get("/", async (req, res) => {
   ]);
 
   // convert to chartData format
-  const chartData = result.map((item) => ({
+  const expenseChartData = expenseResult.map((item) => ({
+    name: item._id,
+    value: item.total,
+  }));
+
+  const incomeChartData = incomeResult.map((item) => ({
     name: item._id,
     value: item.total,
   }));
@@ -74,7 +88,8 @@ app.get("/", async (req, res) => {
     allIncomes,
     totalIncome,
     expenseProgress,
-    chartData,
+    expenseChartData,
+    incomeChartData,
   });
 });
 

@@ -28,10 +28,29 @@ body {
 .error {
   background-color: rgb(252, 199, 199);
   border: 2px solid red;
-  padding: 1rem;
+}
+
+.success {
+  background-color: rgb(142, 214, 242);
+  border: 2px solid rgb(70, 199, 250);
+}
+
+.flash {
+  padding: 0 1rem;
   border-radius: 0.5rem;
+  margin: 0 10rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.flash p {
   color: white;
   font-weight: bold;
   font-size: larger;
-  margin: 0 10rem;
+}
+
+.flash button {
+  border: none;
+  background-color: transparent;
+  font-size: x-large;
 }

@@ -10,6 +10,8 @@ const Expense = require("./models/expense");
 const Income = require("./models/income");
 const wrapAsync = require("./utils/wrapAsync.js");
 const ExpressError = require("./utils/ExpressError.js");
+const session = require("express-session");
+const flash = require("connect-flash");
 const { validateExpense, validateIncome } = require("./middleware.js");
 
 app.use(express.urlencoded({ extended: true }));
@@ -33,13 +35,25 @@ main()
   })
   .catch((err) => console.log(err));
 
-// sample pie chart data
-// const chartData = [
-//   { name: , value: 400 },
-//   { name: "Group B", value: 300 },
-//   { name: "Group C", value: 300 },
-//   { name: "Group D", value: 200 }
-// ];
+const sessionOptions = {
+  secret: "myexpensetrackersecret",
+  resave: false,
+  saveUninitialized: true,
+  cookie: {
+    expires: Date.now() + 7 * 24 * 60 * 60 * 1000,
+    maxAge: 7 * 24 * 60 * 60 * 1000,
+    httpOnly: true,
+  },
+};
+
+app.use(session(sessionOptions));
+app.use(flash());
+
+app.use((req, res, next) => {
+  res.locals.success = req.flash("success");
+  res.locals.failure = req.flash("failure");
+  next();
+});
 
 // home route
 app.get(
@@ -124,6 +138,8 @@ app.post(
       // console.log(res);
     });
 
+    req.flash("success", "New Expense Created!");
+
     res.redirect("/");
   })
 );
@@ -150,6 +166,7 @@ app.post(
     await newIncome.save().then((res) => {
       console.log(res);
     });
+    req.flash("success", "New Income Created!");
 
     res.redirect("/");
   })
@@ -159,6 +176,10 @@ app.get("/editExpense/:id", async (req, res) => {
   let { id } = req.params;
   let expense = await Expense.findOne({ id });
   // console.log(expense)
+  if (!expense) {
+    throw new ExpressError(404, "Expense not found");
+  }
+
   res.render("editExpense", { expense });
 });
 
@@ -177,11 +198,8 @@ app.patch(
         category,
       }
     );
-    if (!expense) {
-      return res.status(404).send("expense not found");
-    }
-    console.log(req.body);
-    console.log(expense);
+    req.flash("success", "Expense Edited Successfully!");
+
     res.redirect("/");
   })
 );
@@ -189,7 +207,10 @@ app.patch(
 app.get("/editIncome/:id", async (req, res) => {
   let { id } = req.params;
   let income = await Income.findOne({ id });
-  console.log(income);
+  // console.log(income);
+  if (!income) {
+    throw new ExpressError(404, "Income not found");
+  }
   res.render("editIncome", { income });
 });
 
@@ -208,11 +229,13 @@ app.patch(
         category,
       }
     );
-    if (!income) {
-      return res.status(404).send("income not found");
-    }
-    console.log(req.body);
-    console.log(income);
+    // if (!income) {
+    //   req.flash("failure", "Income not found !");
+    // }
+    // console.log(req.body);
+    // console.log(income);
+    req.flash("success", "Income Edited Successfully!");
+
     res.redirect("/");
   })
 );
@@ -223,7 +246,11 @@ app.delete(
   wrapAsync(async (req, res) => {
     let { id } = req.params;
     let expense = await Expense.findOneAndDelete({ id });
-    console.log(expense);
+    if (!expense) {
+      throw new ExpressError(404, "Expense not found");
+    }
+    // console.log(expense);
+    req.flash("success", "Expense Deleted Successfully!");
     res.redirect("/");
   })
 );
@@ -234,7 +261,11 @@ app.delete(
   wrapAsync(async (req, res) => {
     let { id } = req.params;
     let income = await Income.findOneAndDelete({ id });
+    if (!income) {
+      throw new ExpressError(404, "Income not found");
+    }
     console.log(income);
+    req.flash("success", "Income Deleted Successfully!");
     res.redirect("/");
   })
 );
@@ -251,6 +282,12 @@ app.get("/expense", async (req, res) => {
     sum = sum + expense.amount;
   }
 
+  // console.log(expenseCatwise);
+  if (expenseCatwise.length == 0) {
+    req.flash("failure", "Category for expense not found!");
+    return res.redirect("/");
+  }
+
   res.render("expCategory", { expenseCatwise, sum });
 });
 
@@ -263,6 +300,11 @@ app.get("/income", async (req, res) => {
 
   for (income of incomeCatwise) {
     sum = sum + income.amount;
+  }
+
+  if (incomeCatwise.length == 0) {
+    req.flash("failure", "Category for income not found!");
+    return res.redirect("/");
   }
 
   res.render("incCategory", { incomeCatwise, sum });

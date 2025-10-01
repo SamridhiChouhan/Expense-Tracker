@@ -22,3 +22,16 @@ body {
   /* background-color: azure; */
   display: flex;
 }
+
+/* error */
+
+.error {
+  background-color: rgb(252, 199, 199);
+  border: 2px solid red;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  color: white;
+  font-weight: bold;
+  font-size: larger;
+  margin: 0 10rem;
+}

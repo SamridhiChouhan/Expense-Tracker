@@ -8,6 +8,9 @@ const ejsMate = require("ejs-mate");
 const mongoose = require("mongoose");
 const Expense = require("./models/expense");
 const Income = require("./models/income");
+const wrapAsync = require("./utils/wrapAsync.js");
+const ExpressError = require("./utils/ExpressError.js");
+const { validateExpense, validateIncome } = require("./middleware.js");
 
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
@@ -38,108 +41,119 @@ main()
 //   { name: "Group D", value: 200 }
 // ];
 
-app.get("/", async (req, res) => {
-  let allExpense = await Expense.find({}).sort({ created_at: -1 });
-  let totalExpense = 0;
-  let totalIncome = 0;
-  for (expense of allExpense) {
-    totalExpense = totalExpense + expense.amount;
-  }
+// home route
+app.get(
+  "/",
+  wrapAsync(async (req, res) => {
+    let allExpense = await Expense.find({}).sort({ created_at: -1 });
+    let totalExpense = 0;
+    let totalIncome = 0;
+    for (expense of allExpense) {
+      totalExpense = totalExpense + expense.amount;
+    }
 
-  let allIncomes = await Income.find({}).sort({ created_at: -1 });
-  for (income of allIncomes) {
-    totalIncome = totalIncome + income.amount;
-  }
+    let allIncomes = await Income.find({}).sort({ created_at: -1 });
+    for (income of allIncomes) {
+      totalIncome = totalIncome + income.amount;
+    }
 
-  let expenseProgress = (totalExpense / totalIncome) * 100;
+    let expenseProgress = (totalExpense / totalIncome) * 100;
 
-  const expenseResult = await Expense.aggregate([
-    {
-      $group: {
-        _id: "$category",
-        total: { $sum: "$amount" },
+    const expenseResult = await Expense.aggregate([
+      {
+        $group: {
+          _id: "$category",
+          total: { $sum: "$amount" },
+        },
       },
-    },
-  ]);
+    ]);
 
-  const incomeResult = await Income.aggregate([
-    {
-      $group: {
-        _id: "$category",
-        total: { $sum: "$amount" },
+    const incomeResult = await Income.aggregate([
+      {
+        $group: {
+          _id: "$category",
+          total: { $sum: "$amount" },
+        },
       },
-    },
-  ]);
+    ]);
 
-  // convert to chartData format
-  const expenseChartData = expenseResult.map((item) => ({
-    name: item._id,
-    value: item.total,
-  }));
+    // convert to chartData format
+    const expenseChartData = expenseResult.map((item) => ({
+      name: item._id,
+      value: item.total,
+    }));
 
-  const incomeChartData = incomeResult.map((item) => ({
-    name: item._id,
-    value: item.total,
-  }));
+    const incomeChartData = incomeResult.map((item) => ({
+      name: item._id,
+      value: item.total,
+    }));
 
-  res.render("index", {
-    allExpense,
-    totalExpense,
-    allIncomes,
-    totalIncome,
-    expenseProgress,
-    expenseChartData,
-    incomeChartData,
-  });
-});
+    res.render("index", {
+      allExpense,
+      totalExpense,
+      allIncomes,
+      totalIncome,
+      expenseProgress,
+      expenseChartData,
+      incomeChartData,
+    });
+  })
+);
 
 app.get("/addExpense", async (req, res) => {
   res.render("addExpense");
 });
 
-app.post("/addExpense", async (req, res) => {
-  let { expense_title, amount, category } = req.body;
-  let id = uuidv4();
-  let created_at = new Date();
-  console.log(req.body, id, created_at);
+// create expense
+app.post(
+  "/addExpense",
+  validateExpense,
+  wrapAsync(async (req, res, next) => {
+    let { expense_title, amount, category, id, created_at } =
+      req.validateExpense;
 
-  let newExpense = new Expense({
-    expense_title,
-    amount,
-    category,
-    id,
-    created_at,
-  });
-  await newExpense.save().then((res) => {
-    console.log(res);
-  });
+    let newExpense = new Expense({
+      expense_title,
+      amount,
+      category,
+      id,
+      created_at,
+    });
 
-  res.redirect("/");
-});
+    await newExpense.save().then((res) => {
+      // console.log(res);
+    });
+
+    res.redirect("/");
+  })
+);
 
 app.get("/addIncome", (req, res) => {
   res.render("addIncome");
 });
 
-app.post("/addIncome", async (req, res) => {
-  let { income_source, amount, category } = req.body;
-  let id = uuidv4();
-  let created_at = new Date();
-  console.log(req.body, id, created_at);
+// create new income
+app.post(
+  "/addIncome",
+  validateIncome,
+  wrapAsync(async (req, res) => {
+    let { income_source, amount, category, id, created_at } =
+      req.validateIncome;
 
-  let newIncome = new Income({
-    income_source,
-    amount,
-    category,
-    id,
-    created_at,
-  });
-  await newIncome.save().then((res) => {
-    console.log(res);
-  });
+    let newIncome = new Income({
+      income_source,
+      amount,
+      category,
+      id,
+      created_at,
+    });
+    await newIncome.save().then((res) => {
+      console.log(res);
+    });
 
-  res.redirect("/");
-});
+    res.redirect("/");
+  })
+);
 
 app.get("/editExpense/:id", async (req, res) => {
   let { id } = req.params;
@@ -148,24 +162,29 @@ app.get("/editExpense/:id", async (req, res) => {
   res.render("editExpense", { expense });
 });
 
-app.patch("/editExpense/:id", async (req, res) => {
-  let { id } = req.params;
-  let { expense_title, amount, category } = req.body;
-  let expense = await Expense.findOneAndUpdate(
-    { id },
-    {
-      expense_title,
-      amount,
-      category,
+// edit expense
+app.patch(
+  "/editExpense/:id",
+  validateExpense,
+  wrapAsync(async (req, res) => {
+    let { id } = req.params;
+    let { expense_title, amount, category } = req.body;
+    let expense = await Expense.findOneAndUpdate(
+      { id },
+      {
+        expense_title,
+        amount,
+        category,
+      }
+    );
+    if (!expense) {
+      return res.status(404).send("expense not found");
     }
-  );
-  if (!expense) {
-    return res.status(404).send("expense not found");
-  }
-  console.log(req.body);
-  console.log(expense);
-  res.redirect("/");
-});
+    console.log(req.body);
+    console.log(expense);
+    res.redirect("/");
+  })
+);
 
 app.get("/editIncome/:id", async (req, res) => {
   let { id } = req.params;
@@ -174,38 +193,51 @@ app.get("/editIncome/:id", async (req, res) => {
   res.render("editIncome", { income });
 });
 
-app.patch("/editIncome/:id", async (req, res) => {
-  let { id } = req.params;
-  let { income_source, amount, category } = req.body;
-  let income = await Income.findOneAndUpdate(
-    { id },
-    {
-      income_source,
-      amount,
-      category,
+// edit income
+app.patch(
+  "/editIncome/:id",
+  validateIncome,
+  wrapAsync(async (req, res) => {
+    let { id } = req.params;
+    let { income_source, amount, category } = req.body;
+    let income = await Income.findOneAndUpdate(
+      { id },
+      {
+        income_source,
+        amount,
+        category,
+      }
+    );
+    if (!income) {
+      return res.status(404).send("income not found");
     }
-  );
-  if (!income) {
-    return res.status(404).send("income not found");
-  }
-  console.log(req.body);
-  console.log(income);
-  res.redirect("/");
-});
+    console.log(req.body);
+    console.log(income);
+    res.redirect("/");
+  })
+);
 
-app.delete("/deleteExpense/:id", async (req, res) => {
-  let { id } = req.params;
-  let expense = await Expense.findOneAndDelete({ id });
-  console.log(expense);
-  res.redirect("/");
-});
+// delete expense
+app.delete(
+  "/deleteExpense/:id",
+  wrapAsync(async (req, res) => {
+    let { id } = req.params;
+    let expense = await Expense.findOneAndDelete({ id });
+    console.log(expense);
+    res.redirect("/");
+  })
+);
 
-app.delete("/deleteIncome/:id", async (req, res) => {
-  let { id } = req.params;
-  let income = await Income.findOneAndDelete({ id });
-  console.log(income);
-  res.redirect("/");
-});
+// delete income
+app.delete(
+  "/deleteIncome/:id",
+  wrapAsync(async (req, res) => {
+    let { id } = req.params;
+    let income = await Income.findOneAndDelete({ id });
+    console.log(income);
+    res.redirect("/");
+  })
+);
 
 app.get("/expense", async (req, res) => {
   let { category } = req.query;
@@ -264,7 +296,6 @@ app.get("/monthWise", async (req, res) => {
   for (inc of groupedincome) {
     totalIncome = inc.amount + totalIncome;
   }
-  // console.log(grouped);
 
   res.render("monthWise", {
     groupedexpense,
@@ -274,6 +305,18 @@ app.get("/monthWise", async (req, res) => {
     totalExpense,
     totalIncome,
   });
+});
+
+// app.all("/*", (req, res, next) => {
+//   next(new ExpressError(404, "Page not found"));
+// });
+app.use((req, res, next) => {
+  next(new ExpressError(404, "Page not found"));
+});
+
+app.use((err, req, res, next) => {
+  let { statusCode = 500, message = "Something went wrong" } = err;
+  res.status(statusCode).render("error", { message });
 });
 
 app.listen(port, () => {

@@ -61,6 +61,11 @@
   transition: all 0.2s ease-in;
 }
 
+.inc-page {
+  display: none;
+  transition: all 0.2s ease-in;
+}
+
 .bar {
   height: 12rem;
   /* background-color: antiquewhite; */

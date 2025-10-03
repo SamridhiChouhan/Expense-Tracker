@@ -25,9 +25,15 @@ body {
 
 /* error */
 
-.error {
+.failure {
   background-color: rgb(252, 199, 199);
   border: 2px solid red;
+}
+
+.error {
+  padding: 1rem;
+  border-radius: 0.5rem;
+  margin: 0 10rem;
 }
 
 .success {

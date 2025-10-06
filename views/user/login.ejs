@@ -1,0 +1,46 @@
+<%- include("../includes/flash.ejs") %>
+<link rel="stylesheet" href="edit.css" />
+<link rel="stylesheet" href="index.css" />
+
+<style>
+  .flash {
+    margin-top: 2rem;
+  }
+  .user-login {
+    height: 22rem;
+    margin-top: 5rem;
+    /* padding: 1rem; */
+  }
+  .user-login input::placeholder {
+    opacity: 0.7;
+  }
+</style>
+
+<div class="edit user-login">
+  <h2>Login to MoneyMap!</h2>
+
+  <form method="post">
+    <div>
+      <label for="username">Enter Username</label>
+      <input
+        type="text"
+        name="username"
+        id="username"
+        placeholder="eg. Samridhi"
+        required
+      />
+    </div>
+    <div>
+      <label for="password">Enter password</label>
+      <input
+        type="text"
+        name="password"
+        id="password"
+        placeholder="eg. sam_123@"
+        required
+      />
+    </div>
+    <button>Login</button>
+  </form>
+  <a href="/signup">Create an account.</a>
+</div>

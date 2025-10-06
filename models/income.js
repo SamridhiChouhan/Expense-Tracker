@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const user = require("./user");
 const { Schema } = mongoose;
 
 const incomeSchema = new Schema({
@@ -32,6 +33,10 @@ const incomeSchema = new Schema({
     type: Date,
     default: Date.now,
     required: true,
+  },
+  user: {
+    type: Schema.Types.ObjectId,
+    ref: "User",
   },
 });
 

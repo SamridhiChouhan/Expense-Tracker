@@ -12,6 +12,13 @@
     <i class="fa-solid fa-xmark"></i>
   </button>
 </div>
+<% } %> <% if(error && error.length) { %>
+<div class="failure flash">
+  <p><%= error %></p>
+  <button>
+    <i class="fa-solid fa-xmark"></i>
+  </button>
+</div>
 <% } %>
 
 <script>

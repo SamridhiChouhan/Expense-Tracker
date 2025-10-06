@@ -1,0 +1,60 @@
+<%- include("../includes/flash.ejs") %>
+<link rel="stylesheet" href="edit.css" />
+<link rel="stylesheet" href="index.css" />
+
+<style>
+  .flash {
+    margin-top: 2rem;
+  }
+  .user-form {
+    /* height: min-content; */
+    height: 28rem;
+    margin-top: 5rem;
+  }
+  .user-form input::placeholder {
+    /* scale:s 0.9; */
+    opacity: 0.6;
+  }
+</style>
+
+<!-- <h2>Welcome to initiate tracking your money</h2> -->
+
+<div class="edit user-form">
+  <h2>Welcome to MoneyMap!</h2>
+
+  <form method="post">
+    <div>
+      <label for="email" id="email">Enter Email</label>
+      <input
+        type="text"
+        name="email"
+        id="email"
+        placeholder="eg. Sam@123gmail.com"
+        required
+      />
+    </div>
+    <div>
+      <label for="username">Enter Username</label>
+      <input
+        type="text"
+        name="username"
+        id="username"
+        placeholder="eg. Samridhi"
+        required
+      />
+    </div>
+    <div>
+      <label for="password">Enter password</label>
+      <input
+        type="text"
+        name="password"
+        id="password"
+        placeholder="eg. sam_123@"
+        required
+      />
+    </div>
+    <button>Signup</button>
+    <!-- <a href="/login">Already have an account</a> -->
+  </form>
+  <a href="/login">Already have an account</a>
+</div>

@@ -5,31 +5,23 @@
   position: fixed;
   right: 0;
   margin: 2rem 4rem 2rem 2rem;
-  /* z-index: -1; */
 }
 
 .toggle {
   height: 3rem;
-  /* background-color: white; */
   margin-bottom: 2rem;
   display: flex;
-  /* border: 0.1rem solid rgb(78, 78, 244); */
   border: 0.1rem solid rgb(114, 87, 255);
   border-radius: 0.5rem;
-  /* z-index: -2; */
-  /* color: rgb(78, 78, 244); */
 }
 
 .toggle button {
   width: 50%;
   height: 100%;
-  /* border-radius: 1rem; */
   border: none;
   font-size: medium;
   font-weight: bold;
-  /* color: rgb(78, 78, 244); */
   color: rgb(114, 87, 255);
-  /* background-color: white; */
   transition: all 0.2s ease-in;
 }
 
@@ -49,15 +41,11 @@
 
 .toggle-effect {
   border-radius: 0.5rem;
-  /* background-color: rgb(78, 78, 244); */
   background-color: rgb(114, 87, 255);
   color: white !important;
 }
 
 .exp-page {
-  /* min-height: fit-content; */
-  /* background-color: pink; */
-  /* display: none; */
   transition: all 0.2s ease-in;
 }
 
@@ -68,14 +56,12 @@
 
 .bar {
   height: 12rem;
-  /* background-color: antiquewhite; */
   background-color: white;
   margin-bottom: 2rem;
   border-radius: 1rem;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  /* align-items: center; */
   padding: 2rem;
   box-shadow: 2px 2px 5px grey;
 }
@@ -84,12 +70,10 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  /* width: 100%; */
 }
 
 .bar-head a {
   text-decoration: none;
-  /* font-size: 0.9rem; */
   font-size: 0.75rem;
   font-weight: 600;
   color: black;
@@ -97,7 +81,6 @@
   padding: 0.4rem;
   border-radius: 1rem;
   opacity: 0.7;
-  /* scale: 0.85; */
 }
 
 .bar-head a:hover {
@@ -123,7 +106,6 @@ h5 {
 
 .progress {
   height: 100%;
-  /* width: 50%; */
   background-color: rgb(255, 94, 137);
   border-bottom-left-radius: 1rem;
   border-top-left-radius: 1rem;
@@ -148,8 +130,6 @@ h5 {
 
 .spend-category {
   height: 10rem;
-  /* background-color: antiquewhite; */
-  /* padding: 0.5rem; */
   padding-top: 0.5rem;
   padding-left: 2rem;
 }
@@ -189,7 +169,6 @@ h5 {
 }
 
 .card-icon i {
-  /* text-decoration: none; */
   color: white;
 }
 

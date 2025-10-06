@@ -24,6 +24,7 @@ router.post(
       category,
       id,
       created_at,
+      user: req.user._id,
     });
     await newIncome.save().then((res) => {
       console.log(res);
@@ -82,7 +83,10 @@ router.delete(
 
 router.get("/income", async (req, res) => {
   let { category } = req.query;
-  let incomeCatwise = await Income.find({ category: `${req.query.category}` });
+  let incomeCatwise = await Income.find({
+    category: `${req.query.category}`,
+    user: req.user._id,
+  });
   let sum = 0;
 
   for (income of incomeCatwise) {

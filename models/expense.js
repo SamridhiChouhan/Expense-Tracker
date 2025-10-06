@@ -32,6 +32,10 @@ const expenseSchema = new Schema({
     default: Date.now,
     required: true,
   },
+  user: {
+    type: Schema.Types.ObjectId,
+    ref: "User",
+  },
 });
 
 const Expense = mongoose.model("Expense", expenseSchema);

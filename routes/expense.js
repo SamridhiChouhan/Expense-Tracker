@@ -10,14 +10,23 @@ const { validateExpense, validateIncome } = require("../middleware.js");
 router.get(
   "/",
   wrapAsync(async (req, res) => {
-    let allExpense = await Expense.find({}).sort({ created_at: -1 });
+    if (!req.isAuthenticated()) {
+      req.flash("failure", "Please log in first!");
+      return res.redirect("/login");
+    }
+    // console.log(req.session.user);
+    let allExpense = await Expense.find({ user: req.user._id }).sort({
+      created_at: -1,
+    });
     let totalExpense = 0;
     let totalIncome = 0;
     for (expense of allExpense) {
       totalExpense = totalExpense + expense.amount;
     }
 
-    let allIncomes = await Income.find({}).sort({ created_at: -1 });
+    let allIncomes = await Income.find({ user: req.user._id }).sort({
+      created_at: -1,
+    });
     for (income of allIncomes) {
       totalIncome = totalIncome + income.amount;
     }
@@ -25,6 +34,11 @@ router.get(
     let expenseProgress = (totalExpense / totalIncome) * 100;
 
     const expenseResult = await Expense.aggregate([
+      {
+        $match: {
+          user: req.user._id,
+        },
+      },
       {
         $group: {
           _id: "$category",
@@ -34,6 +48,11 @@ router.get(
     ]);
 
     const incomeResult = await Income.aggregate([
+      {
+        $match: {
+          user: req.user._id,
+        },
+      },
       {
         $group: {
           _id: "$category",
@@ -52,6 +71,8 @@ router.get(
       name: item._id,
       value: item.total,
     }));
+
+    console.log(incomeChartData);
 
     res.render("index", {
       allExpense,
@@ -83,6 +104,7 @@ router.post(
       category,
       id,
       created_at,
+      user: req.user._id,
     });
 
     await newExpense.save().then((res) => {
@@ -146,6 +168,7 @@ router.get("/expense", async (req, res) => {
   let { category } = req.query;
   let expenseCatwise = await Expense.find({
     category: `${req.query.category}`,
+    user: req.user._id,
   }).sort({ created_at: -1 });
 
   let sum = 0;
@@ -184,7 +207,9 @@ router.get("/monthWise", async (req, res) => {
   let totalIncome = 0;
   let totalExpense = 0;
 
-  let expenses = await Expense.find({}).sort({ created_at: -1 });
+  let expenses = await Expense.find({ user: req.user._id }).sort({
+    created_at: -1,
+  });
   let groupedexpense = [];
   for (exp of expenses) {
     let expMonth = exp.created_at.toString().slice(4, 7);
@@ -196,7 +221,9 @@ router.get("/monthWise", async (req, res) => {
     totalExpense = exp.amount + totalExpense;
   }
 
-  let incomes = await Income.find({}).sort({ created_at: -1 });
+  let incomes = await Income.find({ user: req.user._id }).sort({
+    created_at: -1,
+  });
   let groupedincome = [];
   for (inc of incomes) {
     let incMonth = inc.created_at.toString().slice(4, 7);

@@ -1,32 +1,51 @@
-.navbar{
-     background: linear-gradient(90deg, rgb(94,91,255),rgb(155,79,255));
-     height: 10vh;
-     padding: 1rem 2rem;
-     display: flex;
-     flex-direction: column;
-     justify-content: space-between;
-     position: fixed;
-     top: 0;
-     width: 100%;
+.navbar {
+  background: linear-gradient(90deg, rgb(94, 91, 255), rgb(155, 79, 255));
+  height: 10vh;
+  padding: 1rem 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: fixed;
+  top: 0;
+  width: 100vw;
 }
-.nav-brand a{
-    font-size: larger;
-    padding: 0rem 1rem;
-    color: white;
-    text-decoration: none;
+
+.nav-brand {
+  display: flex;
+  justify-content: space-between;
+}
+
+.nav-brand a {
+  font-size: larger;
+  padding: 0rem 1rem;
+  color: white;
+  text-decoration: none;
+}
+
+.user-panel {
+  font-size: small;
+  /* padding: 1rem; */
+  margin-right: 4rem;
+}
+.user-panel a {
+  padding: 0.2rem;
+}
+
+.user-panel a:hover {
+  text-decoration: underline;
 }
 
 .nav-month {
-    display: flex;
+  display: flex;
 }
 
-.nav-month a{
-    color: #ccc;
-    text-decoration: none;
-    font-size: medium;
-    padding: 0rem 0.5rem 0rem 1rem;
+.nav-month a {
+  color: #ccc;
+  text-decoration: none;
+  font-size: medium;
+  padding: 0rem 0.5rem 0rem 1rem;
 }
 
-.nav-month a:hover{
-    color: white;
+.nav-month a:hover {
+  color: white;
 }

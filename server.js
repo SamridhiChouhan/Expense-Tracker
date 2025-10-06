@@ -14,10 +14,12 @@ const session = require("express-session");
 const flash = require("connect-flash");
 const passport = require("passport");
 const LocalStrategy = require("passport-local");
+const User = require("./models/user.js");
 
 // const { validateExpense, validateIncome } = require("./middleware.js");
-const expense = require("./routes/expense.js");
-const income = require("./routes/income.js");
+const expenseRouter = require("./routes/expense.js");
+const incomeRouter = require("./routes/income.js");
+const userRouter = require("./routes/user.js");
 
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
@@ -54,18 +56,33 @@ const sessionOptions = {
 app.use(session(sessionOptions));
 app.use(flash());
 
+app.use(passport.initialize());
+app.use(passport.session());
+passport.use(new LocalStrategy(User.authenticate()));
+
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
+
 app.use((req, res, next) => {
   res.locals.success = req.flash("success");
   res.locals.failure = req.flash("failure");
+  res.locals.error = req.flash("error");
   next();
 });
 
-app.use("/", expense);
-app.use("/", income);
+// app.get("/register", async (req, res) => {
+//   let fakeUser = new User({
+//     email: "Yohi123@gmail.com",
+//     username: "Yohi_yo",
+//   });
 
-app.get("/signup", (req, res) => {
-  res.send("signup");
-});
+//   let registeredUser = await User.register(fakeUser, "yohi123@");
+//   res.send(registeredUser);
+// });
+
+app.use("/", expenseRouter);
+app.use("/", incomeRouter);
+app.use("/", userRouter);
 
 app.use((req, res, next) => {
   next(new ExpressError(404, "Page not found"));
@@ -73,7 +90,7 @@ app.use((req, res, next) => {
 
 app.use((err, req, res, next) => {
   let { statusCode = 500, message = "Something went wrong" } = err;
-  res.status(statusCode).render("error", { message });
+  res.status(statusCode).render("./extra/error", { message });
 });
 
 app.listen(port, () => {

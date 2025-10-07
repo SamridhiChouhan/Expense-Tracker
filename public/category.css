@@ -87,3 +87,55 @@
 .monthly {
   width: 50%;
 }
+
+/* category - response */
+@media (max-width: 420px) {
+  .cat-row {
+    padding: 0;
+    scale: 0.95;
+  }
+  .cat-row .icon {
+    margin-right: 1rem;
+  }
+  .cat-amount {
+    /* padding: 0; */
+    font-size: x-small;
+  }
+}
+
+@media (max-width: 360px) {
+  .cat-row {
+    scale: 0.9;
+  }
+}
+
+/* Month-wise */
+
+@media (max-width: 1024px) {
+  .month-history {
+    padding: 0 5rem;
+  }
+}
+
+@media (max-width: 850px) {
+  .month-page {
+    padding: 1rem 0;
+    /* padding-top: 1rem; */
+  }
+  .month-history {
+    padding: 0 3rem;
+  }
+}
+
+@media (max-width: 720px) {
+  .month-history {
+    padding: 1rem;
+    flex-direction: column;
+  }
+  .month-data {
+    width: 100%;
+  }
+  .month-expense {
+    margin: 0.7rem 0;
+  }
+}

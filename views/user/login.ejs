@@ -1,15 +1,18 @@
-<%- include("../includes/flash.ejs") %>
-<link rel="stylesheet" href="edit.css" />
-<link rel="stylesheet" href="index.css" />
+<% layout("./layouts/boilerplate") %>
 
 <style>
-  .flash {
-    margin-top: 2rem;
+  .navbar {
+    height: 6vh;
   }
+  .nav-month {
+    display: none;
+  }
+  .flash {
+    margin: 0.5rem;
+  }
+
   .user-login {
     height: 22rem;
-    margin-top: 5rem;
-    /* padding: 1rem; */
   }
   .user-login input::placeholder {
     opacity: 0.7;

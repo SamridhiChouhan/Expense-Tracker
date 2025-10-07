@@ -1,10 +1,13 @@
 <div class="navbar">
   <div class="nav-brand">
-    <a href="/"> Expense Tracker</a>
+    <a href="/">Money Map</a>
     <div class="user-panel">
+      <% if(!currUser) {%>
       <a href="/signup">SignUp</a>
-      <!--  <a href="login">LogIn</a> -->
+      <a href="login">LogIn</a>
+      <% } %> <% if(currUser){ %>
       <a href="logout">LogOut</a>
+      <% } %>
     </div>
   </div>
   <div class="nav-option">

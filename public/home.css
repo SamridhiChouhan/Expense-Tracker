@@ -177,3 +177,9 @@ h5 {
   margin-top: 0.2rem;
   font-size: medium;
 }
+
+@media (max-width: 1100px) {
+  .home-section {
+    width: 52%;
+  }
+}

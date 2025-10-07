@@ -37,6 +37,7 @@
 
 .nav-month {
   display: flex;
+  /* padding-right: 2rem; */
 }
 
 .nav-month a {
@@ -44,8 +45,44 @@
   text-decoration: none;
   font-size: medium;
   padding: 0rem 0.5rem 0rem 1rem;
+  flex-shrink: 0;
 }
 
 .nav-month a:hover {
   color: white;
+}
+
+.nav-option {
+  overflow-x: auto;
+  scrollbar-width: none;
+  margin-right: 3rem;
+}
+
+@media (max-width: 1024px) {
+  .nav-brand a {
+    font-size: x-large;
+  }
+  .user-panel a {
+    font-size: large;
+  }
+}
+
+@media (max-width: 480px) {
+  .navbar {
+    padding: 1rem 0;
+  }
+
+  .nav-brand a {
+    font-size: large;
+  }
+  .user-panel a {
+    font-size: small;
+  }
+
+  .user-panel {
+    margin-right: 0.5rem;
+  }
+  .nav-option {
+    width: 100%;
+  }
 }

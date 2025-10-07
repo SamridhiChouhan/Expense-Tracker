@@ -18,8 +18,6 @@ body {
 
 .landing-page {
   width: 100%;
-  /* height: 100vh; */
-  /* background-color: azure; */
   display: flex;
 }
 
@@ -59,4 +57,114 @@ body {
   border: none;
   background-color: transparent;
   font-size: x-large;
+}
+
+/* Tutorial page */
+
+.tutorial-body {
+  height: 100vh;
+  width: 100vw;
+  /* background-color: ; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(90deg, rgb(161, 159, 252), rgb(199, 156, 255));
+}
+
+.tutorial-page {
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  /* align-self: center; */
+  justify-self: center;
+  padding: 1.5rem;
+  width: max-content;
+  border-radius: 1rem;
+  box-shadow: 2px 2px 5px grey;
+  transform: scale(clamp(0.35, 1vw + 0.5, 1));
+  transition: all 0.3s ease;
+
+  /* height: 10rem; */
+}
+
+.video-container {
+  height: 28rem;
+  margin: 1rem;
+  /* border: 2px solid grey; */
+}
+
+.video {
+  height: 100%;
+  border-radius: 1rem;
+  box-shadow: 2px 2px 5px grey;
+}
+
+.tutorial-page a {
+  text-decoration: none;
+  /* background: ; */
+  border: 2px solid transparent;
+  border-radius: 0.5rem;
+
+  /* color: rgb(94, 91, 255); */
+  color: white;
+  font-size: larger;
+  font-weight: 600;
+  padding: 0.2rem 1.5rem;
+  background: linear-gradient(90deg, rgb(161, 159, 252), rgb(199, 156, 255));
+  transition: all 0.3s ease;
+}
+
+@media (max-width: 1024px) {
+  .tutorial-page {
+    scale: 0.85;
+  }
+}
+
+@media (max-width: 850px) {
+  .content {
+    padding: 0 2rem;
+  }
+  .tutorial-page {
+    scale: 0.8;
+  }
+
+  .tutorial-page a {
+    scale: 2;
+    margin: 1rem;
+  }
+}
+
+@media (max-width: 750px) {
+  .tutorial-page {
+    scale: 0.7;
+  }
+}
+
+@media (max-width: 650px) {
+  .tutorial-page {
+    scale: 0.6;
+  }
+}
+
+@media (max-width: 550px) {
+  .tutorial-page {
+    scale: 0.5;
+  }
+}
+
+@media (max-width: 480px) {
+  .content {
+    padding: 0 1rem;
+  }
+  .tutorial-page {
+    scale: 0.4;
+  }
+}
+
+@media (max-width: 360px) {
+  .tutorial-page {
+    scale: 0.35;
+  }
 }

@@ -14,6 +14,7 @@ router.get(
       req.flash("failure", "Please log in first!");
       return res.redirect("/login");
     }
+
     // console.log(req.session.user);
     let allExpense = await Expense.find({ user: req.user._id }).sort({
       created_at: -1,

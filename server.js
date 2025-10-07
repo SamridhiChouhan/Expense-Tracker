@@ -67,18 +67,9 @@ app.use((req, res, next) => {
   res.locals.success = req.flash("success");
   res.locals.failure = req.flash("failure");
   res.locals.error = req.flash("error");
+  res.locals.currUser = req.user || null;
   next();
 });
-
-// app.get("/register", async (req, res) => {
-//   let fakeUser = new User({
-//     email: "Yohi123@gmail.com",
-//     username: "Yohi_yo",
-//   });
-
-//   let registeredUser = await User.register(fakeUser, "yohi123@");
-//   res.send(registeredUser);
-// });
 
 app.use("/", expenseRouter);
 app.use("/", incomeRouter);

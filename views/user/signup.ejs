@@ -1,15 +1,22 @@
-<%- include("../includes/flash.ejs") %>
-<link rel="stylesheet" href="edit.css" />
-<link rel="stylesheet" href="index.css" />
+<% layout("./layouts/boilerplate") %>
+
+<!-- <link rel="stylesheet" href="edit.css" />
+<link rel="stylesheet" href="index.css" /> -->
 
 <style>
+  .navbar {
+    height: 6vh;
+  }
+  .nav-month {
+    display: none;
+  }
   .flash {
-    margin-top: 2rem;
+    margin: 0.5rem;
   }
   .user-form {
     /* height: min-content; */
     height: 28rem;
-    margin-top: 5rem;
+    /* margin-top: 5rem; */
   }
   .user-form input::placeholder {
     /* scale:s 0.9; */

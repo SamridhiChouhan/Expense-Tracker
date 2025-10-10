@@ -120,6 +120,13 @@ body {
   .tutorial-page {
     scale: 0.85;
   }
+  .flash {
+    margin: 1rem 5rem;
+    /* font-size: large; */
+  }
+  .error {
+    margin: 1rem 5rem;
+  }
 }
 
 @media (max-width: 850px) {
@@ -146,6 +153,12 @@ body {
   .tutorial-page {
     scale: 0.6;
   }
+  .flash {
+    margin: 1rem;
+  }
+  .error {
+    margin: 1rem;
+  }
 }
 
 @media (max-width: 550px) {
@@ -159,12 +172,20 @@ body {
     padding: 0 1rem;
   }
   .tutorial-page {
+    scale: 0.45;
+  }
+  .flash p {
+    font-size: medium;
+  }
+}
+@media (max-width: 420px) {
+  .tutorial-page {
     scale: 0.4;
   }
 }
 
 @media (max-width: 360px) {
   .tutorial-page {
-    scale: 0.35;
+    scale: 0.25;
   }
 }

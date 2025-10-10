@@ -1,24 +1,49 @@
 <div class="footer">
   <div class="f-panel">
-    <div class="f-option">
+    <div class="f-option f-home f-active">
       <div class="f-icon"><i class="fa-solid fa-house"></i></div>
       <div class="f-name">Home</div>
     </div>
-    <div class="f-option">
+    <div class="f-option f-graph">
       <div class="f-icon"><i class="fa-solid fa-chart-simple"></i></div>
       <div class="f-name">Graph</div>
     </div>
-    <div class="f-option">
+    <div class="f-option f-tutorial">
       <div class="f-icon"><i class="fa-solid fa-inbox"></i></div>
-      <div class="f-name">Transaction</div>
-    </div>
-    <div class="f-option">
-      <div class="f-icon"><i class="fa-solid fa-gear"></i></div>
-      <div class="f-name">Settings</div>
+      <div class="f-name">Tutorial</div>
     </div>
   </div>
-  <div class="profile">
-    <div class="p-name">-Name-</div>
-    <div class="p-photo"></div>
+  <div class="back-nav">
+    <a href="/">
+      <i class="fa-solid fa-arrow-left"></i>
+      Back to home</a
+    >
   </div>
 </div>
+
+<script>
+  let graphPage = document.querySelector(".graph-page");
+  let homePage = document.querySelector(".home-section");
+  let fGraph = document.querySelector(".f-graph");
+  let fHome = document.querySelector(".f-home");
+  let fTutorial = document.querySelector(".f-tutorial");
+  let tutorialPage = document.querySelector(".tutorial-page");
+
+  fGraph.addEventListener("click", (e) => {
+    graphPage.style.display = "block";
+    homePage.style.display = "none";
+    fGraph.classList.add("f-active");
+    fHome.classList.remove("f-active");
+    fTutorial.classList.remove("f-active");
+  });
+
+  fHome.addEventListener("click", (e) => {
+    window.location.href = "/";
+    fHome.classList.add("f-active");
+    fGraph.classList.remove("f-active");
+  });
+
+  fTutorial.addEventListener("click", () => {
+    window.location.href = "/tutorial";
+  });
+</script>

@@ -1,15 +1,12 @@
-<% layout("./layouts/boilerplate") %>
-
-<div class="month-page">
-  <div><H2>Balance : &#8377;<%- totalIncome - totalExpense %></H2></div>
-
-  <div class="month-history">
-    <div class="month-data">
-      <h3 style="background-color: rgb(114, 87, 255)">
-        Total Expenses : &#8377;<%= totalExpense %>
-      </h3>
-      <% for(expense of groupedexpense) { %>
-      <div class="month-expense">
+<div class="graph-page">
+  <div class="graph-section expense-sidebar">
+    <div class="graph-box">
+      <canvas id="myExpense" width="600" height="400"></canvas>
+    </div>
+    <div class="expense-history">
+      <h4>Expense History</h4>
+      <% for(expense of allExpense){ %>
+      <div class="exp-contain">
         <div class="exp-info">
           <% if(expense.category === "Electricity"){%>
           <div class="icon" style="background-color: rgb(254, 171, 84)">
@@ -45,27 +42,39 @@
           </div>
           <% } %>
 
-          <div class="exp-head monthy">
+          <div class="exp-head">
             <div class="exp-title"><%= expense.expense_title %></div>
             <div class="exp-category"><%= expense.category %></div>
           </div>
         </div>
-
         <div class="exp-amount">
           <p>&#8377;<%= expense.amount %></p>
+          <div>
+            <a href="/editExpense/<%=expense.id %>"
+              ><i class="fa-regular fa-pen-to-square"></i
+            ></a>
+            <form
+              action="/deleteExpense/<%= expense.id%>?_method=DELETE"
+              method="post"
+              onsubmit="return confirm('Are you sure you want to delete this expense?');"
+            >
+              <button><i class="fa-solid fa-trash"></i></button>
+            </form>
+          </div>
         </div>
       </div>
-
       <% } %>
     </div>
+  </div>
 
-    <div class="month-data">
-      <h3 style="background-color: rgb(114, 87, 255)">
-        Total Income : &#8377;<%= totalIncome %>
-      </h3>
-
-      <% for(income of groupedincome) { %>
-      <div class="month-expense">
+  <div class="graph-section income-sidebar" style="display: none">
+    <div class="graph-box">
+      <canvas id="myIncome" width="600" height="400"></canvas>
+    </div>
+    <div class="expense-history">
+      <h4>Income History</h4>
+      <% for(income of allIncomes){ %>
+      <div class="exp-contain">
         <div class="exp-info">
           <% if(income.category === "Salary"){%>
           <div class="icon" style="background-color: #4bc0c0">
@@ -105,30 +114,28 @@
           </div>
           <% } %>
 
-          <div class="exp-head monthy">
+          <div class="exp-head">
             <div class="exp-title"><%= income.income_source %></div>
             <div class="exp-category"><%= income.category %></div>
           </div>
         </div>
-
         <div class="exp-amount">
           <p>&#8377;<%= income.amount %></p>
+          <div>
+            <a href="/editIncome/<%=income.id %>"
+              ><i class="fa-regular fa-pen-to-square"></i
+            ></a>
+            <form
+              action="/deleteIncome/<%= income.id%>?_method=DELETE"
+              method="post"
+              onsubmit="return confirm('Are you sure you want to delete this expense?');"
+            >
+              <button><i class="fa-solid fa-trash"></i></button>
+            </form>
+          </div>
         </div>
       </div>
-
       <% } %>
     </div>
   </div>
 </div>
-
-<script>
-  let navMonths = document.querySelectorAll(".nav-month a");
-  // let footer = document.querySelector(".footbar");
-  navMonths.forEach((link) => {
-    if (link.href === window.location.href) {
-      link.classList.add("nav-active");
-      // footer.style.display = "none";
-      // console.log(footer);
-    }
-  });
-</script>

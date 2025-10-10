@@ -11,7 +11,7 @@ router.get(
   "/",
   wrapAsync(async (req, res) => {
     if (!req.isAuthenticated()) {
-      req.flash("failure", "Please log in first!");
+      req.flash("failure", "You must be logged in first!");
       return res.redirect("/login");
     }
 

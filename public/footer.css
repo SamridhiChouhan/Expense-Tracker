@@ -12,7 +12,7 @@
   bottom: 0;
   width: 100%;
   display: none;
-  display: flex;
+  /* display: flex; */
   flex-direction: column;
 }
 
@@ -68,5 +68,8 @@
   .f-panel {
     width: 100%;
     font-size: small;
+  }
+  .back-nav a {
+    font-size: large;
   }
 }

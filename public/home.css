@@ -1,3 +1,7 @@
+.landing-page {
+  animation: visible 0.3s ease-in;
+}
+
 .home-section {
   font-size: larger;
   width: 55%;
@@ -190,6 +194,9 @@ h5 {
   }
   .home-section {
     width: 85%;
+    margin: 0;
+    margin-top: 2rem;
+    justify-self: anchor-center;
   }
   .spend-category {
     margin-top: 4rem;
@@ -202,6 +209,7 @@ h5 {
 @media (max-width: 480px) {
   .toggle {
     scale: 0.95;
+    margin-top: 2rem;
   }
   .bar {
     margin-top: 1rem;

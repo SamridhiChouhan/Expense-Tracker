@@ -9,6 +9,10 @@
   flex-direction: column;
   /* align-self: center; */
   justify-self: center;
+  animation: visible 0.3s ease-in;
+  /* animation: scale 2s ease-in-out; */
+  /* animation-timeline: view(30% auto); */
+
   /* align-items: center; */
   /* justify-content: space-around; */
 }

@@ -20,6 +20,10 @@
   background-color: white;
   border-radius: 1rem;
   box-shadow: 2px 2px 5px grey;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: visible 0.5s ease-in;
 }
 
 .exp-contain {
@@ -104,20 +108,21 @@
   color: black;
 }
 
-.graph-box {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  animation: visible 0.5s ease-in;
-  /* animation-timeline: view(); */
-}
-
 @keyframes visible {
   from {
     opacity: 0;
   }
   to {
     opacity: 1;
+  }
+}
+
+@keyframes hidden {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
   }
 }
 

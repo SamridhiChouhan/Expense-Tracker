@@ -3,33 +3,13 @@ const router = express.Router();
 const User = require("../models/user");
 const passport = require("passport");
 
-router.get("/signup", async (req, res) => {
-  res.render("user/signup");
-});
+const userController = require("../controllers/user");
 
-router.post("/signup", async (req, res) => {
-  try {
-    let { username, email, password } = req.body;
-    console.log(req.body);
-    const newUser = new User({ email, username });
-    const registeredUser = await User.register(newUser, password);
-    console.log(registeredUser);
-    req.logIn(registeredUser, (err) => {
-      if (err) {
-        next(err);
-      }
-      req.flash("success", "Welcome to MoneyMap!");
-      res.render("user/tutorial");
-    });
-  } catch (error) {
-    req.flash("failure", error.message);
-    res.redirect("/signup");
-  }
-});
+router.get("/signup", userController.showSignupForm);
 
-router.get("/login", (req, res) => {
-  res.render("user/login");
-});
+router.post("/signup", userController.signup);
+
+router.get("/login", userController.showLoginForm);
 
 router.post(
   "/login",
@@ -37,24 +17,11 @@ router.post(
     failureRedirect: "/login",
     failureFlash: true,
   }),
-  async (req, res) => {
-    req.flash("success", "Welcome to MoneyMap! You are Logged in!");
-    res.redirect("/");
-  }
+  userController.login
 );
 
-router.get("/logout", async (req, res) => {
-  req.logOut((err) => {
-    if (err) {
-      next(err);
-    }
-    req.flash("success", "You are logged out!");
-    res.redirect("/login");
-  });
-});
+router.get("/logout", userController.logout);
 
-router.get("/tutorial", async (req, res) => {
-  res.render("user/tutorial");
-});
+router.get("/tutorial", userController.showTutorial);
 
 module.exports = router;
